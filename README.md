@@ -9,7 +9,8 @@
 
 ### Configurando o VirtualEnv
 Tenha as Dependências citadas acima instaladas na sua máquina.
-Siga as instruções de instalação do virtualenvwrapper [link](https://virtualenvwrapper.readthedocs.io/en/latest/).
+
+Siga as instruções de instalação do virtualenvwrapper [(neste link)](https://virtualenvwrapper.readthedocs.io/en/latest/).
 
 #### Configurando o seu ambiente
 Adicione as seguintes linhas no arquivo ~/.bachrc
@@ -26,10 +27,9 @@ mkdir -p $PROJECT_HOME
 Clone o repositório na pasta ```$PROJECT_HOME```
 
 ```
-cd PROJECT_HOME
+cd $PROJECT_HOME
 git clone git@github.com:Desenho-2-2017/Ecom_merci.git
 ```
-
 
 #### Criando um VirtualEnv
 ```
@@ -41,7 +41,7 @@ Exemplo:
 mkvirtualenv -p python3 -a Ecom_merci -r requirements/requirements.txt eco
 ```
 
-###Configurando seu Projeto
+### Configurando seu Projeto
 Crie um arquivo .env em Ecom_merci/ecom_merci/ com as seguintes configurações:
 
 ```
@@ -55,3 +55,8 @@ DEBUG = True
 python manage.py generate_secret_key
 ```
 Copie o output do comando para a linha SECRET_KEY do seu arquivo .env
+
+#### Suba o sistema
+```
+python manage.py runserver
+```
