@@ -1,0 +1,16 @@
+language: python
+
+python:
+  - "3.5"
+
+env:
+- DJANGO=1.11.4
+
+install:
+  - pip install --upgrade pip
+  - pip install -q Django==$DJANGO
+  - pip install -U pytest
+
+script:
+  - pytest
+
