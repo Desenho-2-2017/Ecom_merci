@@ -13,7 +13,7 @@ Tenha as Dependências citadas acima instaladas na sua máquina.
 Siga as instruções de instalação do virtualenvwrapper [(neste link)](https://virtualenvwrapper.readthedocs.io/en/latest/).
 
 #### Configurando o seu ambiente
-Adicione as seguintes linhas no arquivo ~/.bachrc
+Adicione as seguintes linhas no arquivo ~/.bashrc
 ```
 export WORKON_HOME=$HOME/.virtualenvs
 mkdir -p $WORKON_HOME
