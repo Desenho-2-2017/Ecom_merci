@@ -18,6 +18,8 @@ else:
 
 
 INSTALLED_APPS = [
+    'users.apps.UsersConfig',
+    'products.apps.ProductsConfig',
     'django_extensions',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -88,6 +90,9 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 LANGUAGE_CODE = 'PT-BR'
+LANGUAGES = (
+    ('pt-br', 'Português'),
+)
 
 TIME_ZONE = 'America/Sao_Paulo'
 
@@ -98,3 +103,14 @@ USE_L10N = True
 USE_TZ = True
 
 STATIC_URL = '/static/'
+
+# DATE_FORMAT = 'N j, Y'
+DATE_FORMAT = 'd/m/Y'
+SHORT_DATE_FORMAT = 'd/m/Y'
+DATETIME_FORMAT = 'd/m/Y H:i:s'
+SHORT_DATETIME_FORMAT = 'd/m/Y H:i'
+DATE_INPUT_FORMATS = ('%d/%m/%Y', '%m-%d-%Y', '%Y-%m-%d')
+
+LOCALE_PATHS = (
+    'locale',
+)
