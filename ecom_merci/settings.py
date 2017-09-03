@@ -19,6 +19,7 @@ else:
 
 INSTALLED_APPS = [
     'users.apps.UsersConfig',
+    'products.apps.ProductsConfig',
     'django_extensions',
     'django.contrib.admin',
     'django.contrib.auth',
