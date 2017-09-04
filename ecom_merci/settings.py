@@ -1,5 +1,6 @@
-import os
+# import os
 from decouple import config
+from dj_database_url import parse as db_url
 from unipath import Path
 
 BASE_DIR = Path(__file__).ancestor(1)

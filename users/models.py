@@ -82,11 +82,11 @@ class ShippingAddress(models.Model):
         verbose_name=_("Cidade"),
         max_length=50)
     zip_code = models.CharField(
-        help_text=_(""),
+        help_text=_("Código de Endereço Postal"),
         verbose_name=_("CEP"),
         max_length=10, null=True, blank=True)
     address = models.CharField(
-        help_text=_("Endereço do local"),
+        help_text=_("Endereço Postal"),
         verbose_name=_("Endereço"),
         max_length=256)
     reference = models.CharField(
