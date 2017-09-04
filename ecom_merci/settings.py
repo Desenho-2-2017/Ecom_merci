@@ -1,5 +1,6 @@
-import os
+# import os
 from decouple import config
+from dj_database_url import parse as db_url
 from unipath import Path
 
 BASE_DIR = Path(__file__).ancestor(1)
@@ -60,10 +61,10 @@ TEMPLATES = [
 WSGI_APPLICATION = 'ecom_merci.wsgi.application'
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
+    'default': config(
+        'DATABASE_URL', default='sqlite://:memory:',
+        cast=db_url,
+    )
 }
 
 AUTH_PASSWORD_VALIDATORS = [
