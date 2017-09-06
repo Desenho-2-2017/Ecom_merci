@@ -14,8 +14,21 @@ ALLOWED_HOSTS = []
 
 if DEBUG:
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+    import os
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        }
+    }
 else:
     EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+    DATABASES = {
+        'default': config(
+            'DATABASE_URL', default='sqlite://:memory:',
+            cast=db_url,
+        )
+    }
 
 
 INSTALLED_APPS = [
@@ -60,12 +73,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'ecom_merci.wsgi.application'
 
-DATABASES = {
-    'default': config(
-        'DATABASE_URL', default='sqlite://:memory:',
-        cast=db_url,
-    )
-}
 
 AUTH_PASSWORD_VALIDATORS = [
     {
