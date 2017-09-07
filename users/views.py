@@ -1,7 +1,6 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import redirect, render
 from django.views.generic.edit import FormView
 from users.forms import CustomerUserRegistrationForm
-from users.models import CustomerUser
 
 
 class CustomerUserRegistrationView(FormView):
@@ -12,7 +11,8 @@ class CustomerUserRegistrationView(FormView):
 
     def get(self, request):
         form = CustomerUserRegistrationForm()
-        response = render(request, 'signup.html', {'form': form}) # This template name probably will change
+        # This template name below probably will change
+        response = render(request, 'signup.html', {'form': form})
         return response
 
     def post(self, request):
@@ -22,9 +22,11 @@ class CustomerUserRegistrationView(FormView):
             user = form.save()
             user.save()
             # login(request, user)
-            # response = render(request, 'homepage.html') # This template name probably will change
-            response = redirect('/') # Just for now
+            # This template name below probably will change
+            # response = render(request, 'homepage.html')
+            response = redirect('/')  # Just for now
         else:
-            response = render(request, 'signup.html', {'form': form}) # This template name probably will change
+            # This template name below probably will change
+            response = render(request, 'signup.html', {'form': form})
 
         return response
