@@ -1,5 +1,5 @@
 from django import forms
-from django.core.exceptions import ObjectDoesNotExist
+from django.core.exceptions import ValidationError
 from django.core.validators import validate_email
 from django.utils.translation import ugettext_lazy as _
 from .models import CustomerUser
@@ -39,11 +39,7 @@ de senha.")
         username = cleaned_data.get('username')
 
         username_error_message = _("Este nome de usuário não está disponível.")
-        try:
-            CustomerUser.objects.get(username=username)
-            username_error = forms.ValidationError(username_error_message)
-            self.add_error('username', username_error)
-        except ObjectDoesNotExist:
-            pass
+        if CustomerUser.objects.filter(username=username).exists():
+            raise ValidationError(username_error_message)
 
         return cleaned_data
