@@ -1,11 +1,14 @@
 from django.shortcuts import redirect, render
 from django.views.generic.edit import FormView
+from django.views.generic.edit import UpdateView
+from .models import CustomerUser
 from users.forms import CustomerUserRegistrationForm, CustomerUserDelectionForm
+from users.forms import CustomerUserUpdateForm
 from django.contrib.auth import authenticate
 from django.contrib import messages
 
 
-data = {}
+# data = {}
 
 
 class CustomerUserRegistrationView(FormView):
@@ -72,5 +75,32 @@ class CustomerUserDelectionView(FormView):
 
         else:
             response = render(request, 'excluirConta.html', {'form': form})
+
+        return response
+
+
+class CustomerUserUpdateView(UpdateView):
+    """
+    Class for CustomerUser edit/update view implementation
+    """
+
+    model = CustomerUser
+    slug_field = 'id'
+    pk_url_kwarg = 'id'
+    fields = ['username', 'first_name', 'last_name', 'email', 'password']
+
+    def get_queryset(self):
+        return CustomerUser.objects.all()
+
+    def get(self, request, id):
+        instance = CustomerUser.objects.get(id=id)
+        form = CustomerUserUpdateForm(request.POST or None, instance=instance)
+
+        # Temporary template, should redirect to sucess page in the future
+        if form.is_valid():
+            form.save()
+            return redirect('/')
+
+        response = render(request, 'edit.html', {'form': form})
 
         return response

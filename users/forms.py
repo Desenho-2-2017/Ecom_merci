@@ -69,3 +69,21 @@ class CustomerUserDelectionForm(forms.ModelForm):
                 self.add_error('password', password_error)
 
         return cleaned_data
+
+
+class CustomerUserUpdateForm(forms.ModelForm):
+    """
+    class for CustomerUser update form
+    """
+
+    username = forms.CharField(label=_("Nome de usuário"))
+    first_name = forms.CharField(label=_("Nome"))
+    last_name = forms.CharField(label=_("Sobrenome"))
+    email = forms.CharField(label=_("E-mail"), validators=[validate_email])
+    password = forms.CharField(label=_("Senha"), widget=forms.PasswordInput)
+    password_validation = forms.\
+        CharField(label=_("Confirmação de senha"), widget=forms.PasswordInput)
+
+    class Meta:
+        model = CustomerUser
+        fields = ['username', 'first_name', 'last_name', 'email', 'password']
