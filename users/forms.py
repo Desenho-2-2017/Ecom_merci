@@ -43,3 +43,29 @@ de senha.")
             raise ValidationError(username_error_message)
 
         return cleaned_data
+
+
+class CustomerUserDelectionForm(forms.ModelForm):
+    password = forms.CharField(label=_("Senha"), widget=forms.PasswordInput)
+    password_validation = forms.\
+        CharField(label=_("Confirmação de senha"), widget=forms.PasswordInput)
+
+    class Meta:
+        model = CustomerUser
+        fields = ['password']
+
+    def clean(self):
+        cleaned_data = super(CustomerUserDelectionForm, self).clean()
+
+        # Password validation
+        password = cleaned_data.get('password')
+        password_validation = cleaned_data.get('password_validation')
+
+        password_error_message = _("A senha deve ser igual à confirmação \
+            de senha.")
+        if password and password_validation:
+            if password != password_validation:
+                password_error = forms.ValidationError(password_error_message)
+                self.add_error('password', password_error)
+
+        return cleaned_data
