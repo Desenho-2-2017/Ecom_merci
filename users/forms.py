@@ -44,6 +44,7 @@ de senha.")
 
         return cleaned_data
 
+
 class CustomerUserDelectionForm(forms.ModelForm):
     password = forms.CharField(label=_("Senha"), widget=forms.PasswordInput)
     password_validation = forms.\

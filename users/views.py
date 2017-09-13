@@ -7,7 +7,9 @@ from django.contrib import messages
 
 data = {}
 
+
 class CustomerUserRegistrationView(FormView):
+
     """
     Class for CustomerUser registration view.
     """
@@ -35,7 +37,9 @@ class CustomerUserRegistrationView(FormView):
 
         return response
 
+
 class CustomerUserDelectionView(FormView):
+
     http_method_names = [u'get', u'post']
 
     def get(self, request):
@@ -53,7 +57,8 @@ class CustomerUserDelectionView(FormView):
             password = request.POST['password']
 
             # utilizando o authenticate do django
-            user = authenticate(username=request.user.username, password=password)
+            user = authenticate(username=request.user.username,
+                                password=password)
             if user is not None:
                 user = form.delete()
                 user.delete()
