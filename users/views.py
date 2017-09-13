@@ -8,7 +8,7 @@ from django.contrib.auth import authenticate
 from django.contrib import messages
 
 
-#data = {}
+# data = {}
 
 
 class CustomerUserRegistrationView(FormView):
