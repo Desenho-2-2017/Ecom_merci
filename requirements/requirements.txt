@@ -77,6 +77,7 @@ service-identity==16.0.0
 simplegeneric==0.8.1
 singledispatch==3.4.0.3
 six==1.10.0
+<<<<<<< HEAD
 software-center-aptd-plugins==0.0.0
 stevedore==1.25.0
 subprocess32==3.2.7
@@ -95,3 +96,8 @@ wcwidth==0.1.7
 webencodings==0.5.1
 widgetsnbextension==3.0.2
 zope.interface==4.1.3
+=======
+Unipath==1.1
+dj-database-url
+psycopg2
+>>>>>>> cf021265a29dfb3c9202872360b492ab391da7c0

@@ -1,6 +1,8 @@
-import os
+# import os
 from decouple import config
+from dj_database_url import parse as db_url
 from unipath import Path
+import os
 
 BASE_DIR = Path(__file__).ancestor(1)
 PROJECT_DIR = Path(__file__).ancestor(2)
@@ -13,9 +15,20 @@ ALLOWED_HOSTS = []
 
 if DEBUG:
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        }
+    }
 else:
     EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-
+    DATABASES = {
+        'default': config(
+            'DATABASE_URL', default='sqlite://:memory:',
+            cast=db_url,
+        )
+    }
 
 INSTALLED_APPS = [
     'users.apps.UsersConfig',
@@ -44,7 +57,7 @@ ROOT_URLCONF = 'ecom_merci.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'users/templates/')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -58,13 +71,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'ecom_merci.wsgi.application'
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
 
 AUTH_PASSWORD_VALIDATORS = [
     {
