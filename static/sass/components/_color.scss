@@ -187,7 +187,11 @@ $green: (
   "accent-1":    #B9F6CA,
   "accent-2":    #69F0AE,
   "accent-3":    #00E676,
-  "accent-4":    #00C853
+  "accent-4":    #00C853,
+  "gabygreen-1": #11270B,
+  "gabygreen-2": #598B2C,
+  "gabygreen-3": #3C5A14,
+  "gabygreen-4": #49CE2B,
 );
 
 $light-green: (
@@ -409,4 +413,3 @@ $colors: (
   @warn "Unknown `#{$color}` - `#{$type}` in $colors.";
   @return null;
 }
-

@@ -35,11 +35,13 @@
 // 1. Colors
 // ==========================================================================
 
-$primary-color: color("materialize-red", "lighten-2") !default;
+/*** $primary-color: color("materialize-red", "lighten-2") !default; ***/
+$primary-color: color("green", "gabygreen-4") !default;
 $primary-color-light: lighten($primary-color, 15%) !default;
 $primary-color-dark: darken($primary-color, 15%) !default;
 
-$secondary-color: color("teal", "lighten-1") !default;
+/*** $secondary-color: color("teal", "lighten-1") !default; ***/
+$secondary-color: color("green", "gabygreen-3") !default;
 $success-color: color("green", "base") !default;
 $error-color: color("red", "base") !default;
 $link-color: color("light-blue", "darken-1") !default;
@@ -173,7 +175,8 @@ $input-margin: 0 0 $input-margin-bottom 0 !default;
 $input-padding: 0 !default;
 $input-transition: all .3s !default;
 $label-font-size: .8rem !default;
-$input-disabled-color: rgba(0,0,0, .42) !default;
+$input-disabled-color: color("green", "gabygreen-3") !default;
+//$input-disabled-color: rgba(0,0,0, .42) !default;
 $input-disabled-solid-color: #949494 !default;
 $input-disabled-border: 1px dotted $input-disabled-color !default;
 $input-invalid-border: 1px solid $input-error-color !default;
