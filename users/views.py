@@ -7,6 +7,7 @@ from users.forms import CustomerUserRegistrationForm, CustomerUserDelectionForm
 from users.forms import CustomerUserUpdateForm
 from django.contrib.auth import authenticate
 from django.contrib import messages
+from django.core.urlresolvers import reverse
 
 
 class CustomerUserRegistrationView(FormView):
@@ -28,10 +29,9 @@ class CustomerUserRegistrationView(FormView):
         if form.is_valid():
             user = form.save()
             user.save()
-            # login(request, user)
+
             # This template name below probably will change
-            # response = render(request, 'homepage.html')
-            response = redirect('/')  # Just for now
+            response = redirect(reverse("detail", args=[user.pk]))
         else:
             # This template name below probably will change
             response = render(request, 'signup.html', {'form': form})
@@ -68,8 +68,6 @@ class CustomerUserDelectionView(FormView):
                 return response
             else:
                 pass
-                # response = render_mensagem_erro(request, 'Senha incorreta!\
-                #     Digite novamente.', 'excluirConta.html', {'data': data})
 
         else:
             response = render(request, 'excluirConta.html', {'form': form})
@@ -109,7 +107,6 @@ class CustomerUserDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
 
-        # import ipdb; ipdb.set_trace()
         context = super(CustomerUserDetailView,
                         self).get_context_data(**kwargs)
         context['context_object_name'] = CustomerUser._meta.verbose_name
