@@ -1,14 +1,12 @@
 from django.shortcuts import redirect, render
 from django.views.generic.edit import FormView
 from django.views.generic.edit import UpdateView
+from django.views.generic import DetailView
 from .models import CustomerUser
 from users.forms import CustomerUserRegistrationForm, CustomerUserDelectionForm
 from users.forms import CustomerUserUpdateForm
 from django.contrib.auth import authenticate
 from django.contrib import messages
-
-
-# data = {}
 
 
 class CustomerUserRegistrationView(FormView):
@@ -104,3 +102,15 @@ class CustomerUserUpdateView(UpdateView):
         response = render(request, 'edit.html', {'form': form})
 
         return response
+
+
+class CustomerUserDetailView(DetailView):
+    model = CustomerUser
+
+    def get_context_data(self, **kwargs):
+
+        # import ipdb; ipdb.set_trace()
+        context = super(CustomerUserDetailView,
+                        self).get_context_data(**kwargs)
+        context['context_object_name'] = CustomerUser._meta.verbose_name
+        return context
