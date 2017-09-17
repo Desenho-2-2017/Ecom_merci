@@ -1,51 +1,54 @@
 {%  extends "base.html" %}
 {% block main_content %}
-
+<body>
+  <div class="container">
   <h2>Cadastro</h2>
-  <form method="post">
+    <form method="post">
 
-    <div class="row">
-    <form class="col s12">
-      <div class="row">
-        <div class="input-field col s6">
-          <input placeholder="Nome" id="first_name" type="text" class="validate">
-          <label for="first_name">Nome de usuário</label>
-        </div>
-        <div class="input-field col s6">
-          <input id="last_name" type="text" class="validate">
-          <label for="last_name">Last Name</label>
-        </div>
-      </div>
-      <div class="row">
-        <div class="input-field col s12">
-          <input disabled value="I am not editable" id="disabled" type="text" class="validate">
-          <label for="disabled">Disabled</label>
-        </div>
-      </div>
-      <div class="row">
-        <div class="input-field col s12">
-          <input id="password" type="password" class="validate">
-          <label for="password">Password</label>
-        </div>
-      </div>
-      <div class="row">
-        <div class="input-field col s12">
-          <input id="email" type="email" class="validate">
-          <label for="email">Email</label>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col s12">
-          This is an inline input field:
-          <div class="input-field inline">
-            <input id="email" type="email" class="validate">
-            <label for="email" data-error="wrong" data-success="right">Email</label>
+        <div class="row">
+        <form class="col s12">
+          <div class="row">
+            <!-- Name field-->
+            <div class="input-field col s6">
+              <input placeholder="Nome" id="first_name" type="text" class="validate">
+              <label for="username">Nome</label>
+            </div>
+            <!-- Last name field-->
+            <div class="input-field col s6">
+              <input placeholder="Sobrenome" id="last_name" type="text" class="validate">
+              <label for="username">Sobrenome</label>
+            </div>
+            <!-- Username field-->
+            <div class="input-field col s6">
+              <input placeholder="Nome" id="username" type="text" class="validate">
+              <label for="username">Escolha seu nome de usuário</label>
+            </div>
+            <!-- Password field-->
+          <div class="row">
+            <div class="input-field col s6">
+              <input placeholder="Senha" id="password" type="password" class="validate">
+              <label for="password">Criar uma senha</label>
+            </div>
           </div>
+
+        <!-- Email field-->
+          <div class="row">
+            <div class="input-field col s6">
+              <input placeholder="Email" id="email" type="email" class="validate">
+              <label for="email" data-error="Email inválido">Insira seu email</label>
+            </div>
+          </div>
+
+
+        <!-- Sign_up button -->
+        <div>
+          <button class="btn waves-effect  green accent-4 right" type="submit" name="action">Cadastrar
+            <i class="material-icons right">send</i>
+          </button>
         </div>
       </div>
     </form>
   </div>
-    <button type="submit">Cadastrar</button>
-  </form>
+</body>
 
 {% endblock main_content %}
