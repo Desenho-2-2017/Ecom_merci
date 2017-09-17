@@ -1,8 +1,32 @@
-{% block content %}
-  <h2>Mudar senha</h2>
-  <form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Mudar senha</button>
-  </form>
-{% endblock %}
+{%  extends "base.html" %}
+{% block main_content %}
+<body>
+  <div class="container justify-content:center">
+    <div class="container-delete-account">
+    <h3>Deseja excluir sua conta?</h3>
+    <form method="post">
+      <!--Password field -->
+      <div class="row">
+        <div class="input-field col s6">
+          <input placeholder="Senha" id="password" type="password" class="validate">
+          <label for="password">Digite a senha</label>
+        </div>
+      </div>
+      <!--Password validation field -->
+      <div class="row">
+        <div class="input-field col s6">
+          <input placeholder="Repetir senha" id="password_validation" type="password" class="validate">
+          <label for="password">Repetir senha</label>
+        </div>
+      </div>
+      <!--Submit delete account button -->
+      <div>
+        <button class="btn waves-effect  green accent-4" type="submit" name="action">Excluir conta
+          <i class="material-icons right">send</i>
+        </button>
+      </div>
+    </form>
+  </div>
+  </div>
+</body>
+{% endblock main_content %}
