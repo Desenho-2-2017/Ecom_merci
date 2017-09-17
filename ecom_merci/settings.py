@@ -4,7 +4,7 @@ from dj_database_url import parse as db_url
 from unipath import Path
 import os
 
-BASE_DIR = Path(__file__).ancestor(1)
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PROJECT_DIR = Path(__file__).ancestor(2)
 
 SECRET_KEY = config('SECRET_KEY', default='')
