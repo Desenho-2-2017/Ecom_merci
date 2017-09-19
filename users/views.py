@@ -1,14 +1,13 @@
 from django.shortcuts import redirect, render
 from django.views.generic.edit import FormView
 from django.views.generic.edit import UpdateView
+from django.views.generic import DetailView
 from .models import CustomerUser
 from users.forms import CustomerUserRegistrationForm, CustomerUserDelectionForm
 from users.forms import CustomerUserUpdateForm
 from django.contrib.auth import authenticate
 from django.contrib import messages
-
-
-# data = {}
+from django.core.urlresolvers import reverse
 
 
 class CustomerUserRegistrationView(FormView):
@@ -30,10 +29,9 @@ class CustomerUserRegistrationView(FormView):
         if form.is_valid():
             user = form.save()
             user.save()
-            # login(request, user)
+
             # This template name below probably will change
-            # response = render(request, 'homepage.html')
-            response = redirect('/')  # Just for now
+            response = redirect(reverse("detail", args=[user.pk]))
         else:
             # This template name below probably will change
             response = render(request, 'signup.html', {'form': form})
@@ -70,8 +68,6 @@ class CustomerUserDelectionView(FormView):
                 return response
             else:
                 pass
-                # response = render_mensagem_erro(request, 'Senha incorreta!\
-                #     Digite novamente.', 'excluirConta.html', {'data': data})
 
         else:
             response = render(request, 'excluirConta.html', {'form': form})
@@ -104,3 +100,14 @@ class CustomerUserUpdateView(UpdateView):
         response = render(request, 'edit.html', {'form': form})
 
         return response
+
+
+class CustomerUserDetailView(DetailView):
+    model = CustomerUser
+
+    def get_context_data(self, **kwargs):
+
+        context = super(CustomerUserDetailView,
+                        self).get_context_data(**kwargs)
+        context['context_object_name'] = CustomerUser._meta.verbose_name
+        return context
