@@ -1,0 +1,27 @@
+{% block content %}
+
+    <h2>{{context_object_name_plural}}</h2>
+	{% if not customeruser_list %}
+	  <p>Não há {{context_object_name_plural}} cadastrados.</p>
+	{% else %}
+	  <table class="table table-striped table-hover">
+	    <thead>
+	      <tr>
+					<th>PK</th>
+					<th>{{context_object_name}}</th>
+	      </tr>
+	    </thead>
+	    <tbody>
+				{% for customeruser in customeruser_list %}
+					<tr>
+						<td>{{customeruser.pk }}</td>
+						<td><a href={{customeruser.get_absolute_url}}>
+							{{customeruser.first_name }}
+						</a></td>
+					</tr>
+				{% endfor %}
+	  	</tbody>
+	  </table>
+	{% endif %}
+{% endblock %}
+
