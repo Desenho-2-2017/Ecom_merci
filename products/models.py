@@ -1,3 +1,4 @@
+from __future__ import unicode_literals
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
@@ -36,6 +37,28 @@ class Product(models.Model):
         verbose_name=_("Preço do produto"),
         null=False, blank=False
     )
+    weight = models.IntegerField(
+        help_text=_("Peso do produto atual"),
+        verbose_name=_("Peso do produto"),
+        null=False, blank=False
+    )
+    width = models.IntegerField(
+        default=0,
+        help_text=_("Largura da Imagem"),
+        verbose_name=_("Largura da Imagem")
+    )
+    height = models.IntegerField(
+        default=0,
+        help_text=_("Altura da Imagem"),
+        verbose_name=_("Altura da Imagem")
+    )
+    illustration = models.ImageField(null=False, blank=False,
+                                     default='default_product.jpg',
+                                     width_field="width",
+                                     height_field="height",
+                                     help_text=_("Ilustração"),
+                                     verbose_name=_("Imagem"),
+                                     )
 
     class Meta:
         verbose_name = _('Produto')
