@@ -38,6 +38,7 @@ class Product(models.Model):
         null=False, blank=False
     )
     weight = models.IntegerField(
+        default=0,
         help_text=_("Peso do produto atual"),
         verbose_name=_("Peso do produto"),
         null=False, blank=False
