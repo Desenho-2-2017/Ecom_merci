@@ -1,13 +1,14 @@
-from django.shortcuts import redirect, render
-from django.views.generic.edit import FormView
-from django.views.generic.edit import UpdateView
-from django.views.generic import DetailView
 from .models import CustomerUser
-from users.forms import CustomerUserRegistrationForm, CustomerUserDelectionForm
-from users.forms import CustomerUserUpdateForm
-from django.contrib.auth import authenticate
 from django.contrib import messages
+from django.contrib.auth import authenticate
 from django.core.urlresolvers import reverse
+from django.shortcuts import redirect, render
+from django.views.generic import DetailView, ListView
+from django.views.generic.edit import FormView, UpdateView
+from users.forms import (
+    CustomerUserDelectionForm,
+    CustomerUserRegistrationForm,
+    CustomerUserUpdateForm)
 
 
 class CustomerUserRegistrationView(FormView):
@@ -110,4 +111,17 @@ class CustomerUserDetailView(DetailView):
         context = super(CustomerUserDetailView,
                         self).get_context_data(**kwargs)
         context['context_object_name'] = CustomerUser._meta.verbose_name
+        return context
+
+
+class CustomerUserListView(ListView):
+    model = CustomerUser
+
+    def get_context_data(self, **kwargs):
+
+        context = super(CustomerUserListView,
+                        self).get_context_data(**kwargs)
+        context['context_object_name'] = CustomerUser._meta.verbose_name
+        context['context_object_name_plural'] = (
+            CustomerUser._meta.verbose_name_plural)
         return context
