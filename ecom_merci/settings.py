@@ -109,8 +109,6 @@ USE_L10N = True
 
 USE_TZ = True
 
-STATIC_URL = '/static/'
-
 # DATE_FORMAT = 'N j, Y'
 DATE_FORMAT = 'd/m/Y'
 SHORT_DATE_FORMAT = 'd/m/Y'
@@ -121,3 +119,13 @@ DATE_INPUT_FORMATS = ('%d/%m/%Y', '%m-%d-%Y', '%Y-%m-%d')
 LOCALE_PATHS = (
     'locale',
 )
+
+# Django suit Customization
+SUIT_CONFIG = {
+     'ADMIN_NAME': 'Ecom_merci',
+}
+
+# Static Files (CSS, JavaScript, Images)
+STATIC_URL = '/static/'
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), "ProductsMedia")
