@@ -58,6 +58,16 @@ python manage.py generate_secret_key
 ```
 Copie o output do comando para a linha SECRET_KEY do seu arquivo .env
 
+
+#### DIFERENÇA
+Execute os seguintes comando:
+```
+python manage.py migrate
+python manage.py loaddata sites
+```
+
+
+
 #### Suba o sistema
 ```
 python manage.py runserver
