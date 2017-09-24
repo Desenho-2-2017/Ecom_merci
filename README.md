@@ -1,4 +1,4 @@
-[![Travis CI Build Status](https://travis-ci.org/Desenho-2-2017/Ecom_merci.svg?branch=master)](https://travis-ci.org/Desenho-2-2017/Ecom_merci) 
+[![Travis CI Build Status](https://travis-ci.org/Desenho-2-2017/Ecom_merci.svg?branch=master)](https://travis-ci.org/Desenho-2-2017/Ecom_merci)
 
 # Ecom_Merci
 
