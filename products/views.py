@@ -1,7 +1,6 @@
 from django.shortcuts import render
-# from django.http import HttpResponse
-from .models import Product
 from django.http import Http404
+from .models import (ProductCategory, Product)
 
 
 def productIndexView(request):
@@ -20,3 +19,25 @@ def productDetailView(request, product_id):
     except Product.DoesNotExist:
         raise Http404("The product does not exist")
     return render(request, "productDetail.html", {'product': product})
+
+
+def categoryIndexView(request):
+
+    queryset = ProductCategory.objects.all()
+    context = {
+        "categories": queryset,
+    }
+
+    return render(request, "categoryIndex.html", context)
+
+
+def categoryDetailView(request, category_id):
+
+    category = ProductCategory.objects.get(pk=category_id)
+    queryset = Product.objects.filter(category_id=category_id)
+    context = {
+        "products": queryset,
+        "category": category,
+    }
+
+    return render(request, "categoryDetail.html", context)
