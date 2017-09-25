@@ -101,3 +101,6 @@ solr-*/
 media/*
 !media/.gitkeep
 ecom_merci/db.sqlite3
+
+# ignora tudo dentro de Productsmedia
+ProductsMedia/*
