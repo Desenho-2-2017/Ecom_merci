@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title> Product Detail </title>
+  </head>
+
+  <body>
+      <div>
+        <h3>
+          <a href="#">{{ product.product_name }}</a>
+        </h3>
+          <a href="#">
+            <img class="img-responsive" src='{{ product.illustration.url }}' alt="">
+          </a>
+
+          <p> Preco do produto: </p>
+          <p>{{ product.price }}</p>
+          <br></br>
+          <hr></hr>
+          <p> Quantidade em estoque: </p>
+          <p>{{ product.stock_quantity }}</p>
+          <br></br>
+          <hr></hr>
+          <p> Peso da unidade do produto: </p>
+          <p>{{ product.weight }}</p>
+          <br></br>
+          <hr></hr>
+
+      </div>
+  </body>
+</html>

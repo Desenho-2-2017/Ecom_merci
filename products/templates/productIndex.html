@@ -6,19 +6,15 @@
     <title>Produtos</title>
   </head>
 
-  <body id="page-top" style="padding-top: 0;">
-    <div class="container">
-      <div class="row">
-          <div class="col-lg-12 text-center">
-              <h1 style="color:white">Produtos</h1>
-          </div>
-      </div>
+  <body>
+
+    <h1>Produtos</h1>
 
       <section id="grid" class="content-section" >
         <div class="row">
         {% for product in products %}
           {% if product.illustration  %}
-            <a href="/{{ product.id }}/Details">
+            <a href="/products/{{ product.id }}/details/">
                 <br>
                 <p> {{ product.product_name }} </p>
                 <img class="img-responsive" src='{{ product.illustration.url }}'>
@@ -27,9 +23,8 @@
           {% endif %}
         {% endfor %}
         </div>
-      </section>
-
-    </div>
+      </div>
+    </section>
 
   </body>
 
