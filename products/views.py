@@ -1,6 +1,7 @@
 from django.shortcuts import render
 # from django.http import HttpResponse
-from .models import (ProductCategory, Product)
+from .models import Product
+from django.http import Http404
 
 
 def productIndexView(request):
