@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Categorizados como</title>
+  </head>
+
+  <body>
+
+    <h1>categorizados como </h1>
+    <h1> {{ category.category_name }}<h1>
+
+      <section id="grid" class="content-section" >
+        <div class="row">
+        {% for product in products %}
+          {% if product %}
+            {% if product.illustration  %}
+              <a href="/products/{{ product.id }}/details/">
+                  <br>
+                  <p> {{ product.product_name }} </p>
+                  <img class="img-responsive" src='{{ product.illustration.url }}'>
+                </div>
+              </a>
+            {% endif %}
+          {% endif %}
+        {% endfor %}
+        </div>
+      </div>
+    </section>
+
+  </body>
+
+</html>

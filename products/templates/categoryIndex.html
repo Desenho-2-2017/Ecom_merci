@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Categorias</title>
+  </head>
+
+  <body>
+
+    <h1>Categorias</h1>
+
+      <section id="grid" class="content-section" >
+        <div class="row">
+        {% for category in categories %}
+            <a href="/category/{{ category.id }}/details/">
+                <p> {{ category.category_name }} </p>
+            </a>
+        {% endfor %}
+        </div>
+    </section>
+    
+  </body>
+
+</html>
