@@ -9,6 +9,5 @@ def productIndexView(request):
     context = {
         "products": queryset,
     }
-    return render(request,"productIndex.html", context)
 
-# class CostumerProductRegistrationView():
+    return render(request, "productIndex.html", context)
