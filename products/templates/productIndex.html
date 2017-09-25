@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Produtos</title>
+  </head>
+
+  <body id="page-top" style="padding-top: 0;">
+    <div class="container">
+      <div class="row">
+          <div class="col-lg-12 text-center">
+              <h1 style="color:white">Produtos</h1>
+          </div>
+      </div>
+
+      <section id="grid" class="content-section" >
+        <div class="row">
+        {% for product in products %}
+          {% if product.illustration  %}
+            <a href="/{{ product.id }}/Details">
+                <br>
+                <p> {{ product.product_name }} </p>
+                <img class="img-responsive" src='{{ product.illustration.url }}'>
+              </div>
+            </a>
+          {% endif %}
+        {% endfor %}
+        </div>
+      </section>
+
+    </div>
+
+  </body>
+
+</html>

@@ -57,7 +57,6 @@ class Product(models.Model):
         verbose_name=_("Altura da Imagem")
     )
     illustration = models.ImageField(null=False, blank=False,
-                                     default='default_product.jpg',
                                      width_field="width",
                                      height_field="height",
                                      help_text=_("Ilustração"),
