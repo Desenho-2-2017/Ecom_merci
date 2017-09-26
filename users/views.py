@@ -26,6 +26,10 @@ class CustomerUserRegistrationView(FormView):
         response = render(request, 'signup.html', {'form': form})
         return response
 
+        def get(self, request):
+            response = render(request, 'homepage.html')
+            return response
+
     def post(self, request):
         form = CustomerUserRegistrationForm(request.POST)
 
@@ -35,7 +39,7 @@ class CustomerUserRegistrationView(FormView):
             # login(request, user)
             # This template name below probably will change
             # response = render(request, 'homepage.html')
-            response = redirect('/')  # Just for now
+            response = render(request, 'index.html')  # Just for now
         else:
             # This template name below probably will change
             response = render(request, 'signup.html', {'form': form})
@@ -101,7 +105,7 @@ class CustomerUserUpdateView(UpdateView):
         # Temporary template, should redirect to sucess page in the future
         if form.is_valid():
             form.save()
-            return redirect('/')
+            return redirect('index.html')
 
         response = render(request, 'edit.html', {'form': form})
 
