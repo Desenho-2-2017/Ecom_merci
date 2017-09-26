@@ -4,7 +4,7 @@
   <div class="container justify-content:center">
     <div class="container-delete-account">
     <h3>Deseja excluir sua conta?</h3>
-    <form method="post">
+    <form method="post">{% csrf_token %}
       <!--Password field -->
       <div class="row">
         <div class="input-field col s6">

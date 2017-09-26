@@ -1,3 +1,4 @@
+
 # import os
 from decouple import config
 from dj_database_url import parse as db_url
@@ -95,10 +96,10 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-LANGUAGE_CODE = 'PT-BR'
-LANGUAGES = (
-    ('pt-br', 'Português'),
-)
+LANGUAGE_CODE = 'pt-br'
+#LANGUAGES = (
+#    ('pt-br', 'Português'),
+#)
 
 TIME_ZONE = 'America/Sao_Paulo'
 
