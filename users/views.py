@@ -93,15 +93,18 @@ class CustomerUserUpdateView(UpdateView):
         return CustomerUser.objects.all()
 
     def get(self, request, id):
-        instance = CustomerUser.objects.get(id=id)
-        form = CustomerUserUpdateForm(request.POST or None, instance=instance)
+        if request.user.id == int(id):
+            instance = CustomerUser.objects.get(id=id)
+            form = CustomerUserUpdateForm(request.POST or None, instance=instance)
 
-        # Temporary template, should redirect to sucess page in the future
-        if form.is_valid():
-            form.save()
-            return redirect('/')
+            # Temporary template, should redirect to sucess page in the future
+            if form.is_valid():
+                form.save()
+                return redirect('/')
 
-        response = render(request, 'edit.html', {'form': form})
+            response = render(request, 'edit.html', {'form': form})
+        else:
+            response = redirect('/')
 
         return response
 
@@ -111,9 +114,13 @@ class CustomerUserDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
 
-        context = super(CustomerUserDetailView,
-                        self).get_context_data(**kwargs)
-        context['context_object_name'] = CustomerUser._meta.verbose_name
+        if request.user.id == kwargs['object'].id:
+            context = super(CustomerUserDetailView,
+                            self).get_context_data(**kwargs)
+            context['context_object_name'] = CustomerUser._meta.verbose_name
+        else:
+            context = redirect('/')
+
         return context
 
 
@@ -141,7 +148,7 @@ class LoginView(FormView):
             form = LoginForm()
             response = render(request, 'login.html', {'form': form})
         else:
-            response = redirect('/user_ja_esta_logado')
+            response = redirect('/')
 
         return response
 
@@ -154,7 +161,7 @@ class LoginView(FormView):
 
         if user is not None:
             login(request, user)
-            response = redirect('/user_logou')
+            response = redirect('/')
         else:
             messages.error(request, 'Nome de usuário e/ou senha incorreto(s).')
             response = render(request, 'login.html', {'form': form})
@@ -171,8 +178,8 @@ class LogoutView(FormView):
     def get(self, request):
         if request.user.is_authenticated:
             logout(request)
-            response = redirect('/user_deslogou')
+            response = redirect('/')
         else:
-            response = redirect('/user_nao_esta_logado')
+            response = redirect('/')
 
         return response
