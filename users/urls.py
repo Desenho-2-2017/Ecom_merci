@@ -5,6 +5,7 @@ from .views import (CustomerUserRegistrationView,
                     CustomerUserUpdateView)
 
 urlpatterns = [
+
     url(r'^sign_up/$', CustomerUserRegistrationView.as_view(),
         name='sign_up'),
     url(r'^excluir_conta/$', CustomerUserDelectionView.as_view(),

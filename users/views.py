@@ -39,7 +39,7 @@ class CustomerUserRegistrationView(FormView):
             # login(request, user)
             # This template name below probably will change
             # response = render(request, 'homepage.html')
-            response = render(request, 'index.html')  # Just for now
+            response = render(request, 'homepage.html')  # Just for now
         else:
             # This template name below probably will change
             response = render(request, 'signup.html', {'form': form})

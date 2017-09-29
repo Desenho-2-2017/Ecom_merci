@@ -6,4 +6,4 @@ class FrontView (View):
     http_method_names = [u'get', u'post']
 
     def get(self,request):
-        return render(request,'index.html')
+        return render(request,'homepage.html')
