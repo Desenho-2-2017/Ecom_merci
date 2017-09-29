@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Produtos</title>
+  </head>
+
+  <body>
+
+    <h1>Produtos</h1>
+
+      <section id="grid" class="content-section" >
+        <div class="row">
+        {% for product in products %}
+          {% if product.illustration  %}
+            <a href="/products/{{ product.id }}/details/">
+                <br>
+                <p> {{ product.product_name }} </p>
+                <img class="img-responsive" src='{{ product.illustration.url }}'>
+              </div>
+            </a>
+          {% endif %}
+        {% endfor %}
+        </div>
+      </div>
+    </section>
+
+  </body>
+
+</html>

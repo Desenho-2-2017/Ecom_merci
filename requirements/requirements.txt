@@ -9,3 +9,4 @@ Unipath==1.1
 dj-database-url
 psycopg2
 django-suit==0.2.25
+Pillow

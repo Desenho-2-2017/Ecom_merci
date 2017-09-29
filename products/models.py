@@ -1,5 +1,7 @@
+from __future__ import unicode_literals
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
+from django.core.validators import MinValueValidator
 
 
 class ProductCategory(models.Model):
@@ -26,16 +28,40 @@ class Product(models.Model):
         max_length=100, null=False, blank=False
     )
     category_id = models.ForeignKey(ProductCategory)
-    stock_quantity = models.IntegerField(
+    stock_quantity = models.PositiveIntegerField(
         help_text=_("Quantidade do produto em estoque"),
         verbose_name=_("Quandtidade do produto"),
         null=False, blank=False
     )
-    price = models.IntegerField(
+    price = models.FloatField(
         help_text=_("Preço atual do produto"),
         verbose_name=_("Preço do produto"),
-        null=False, blank=False
+        null=False, blank=False,
+        validators=[MinValueValidator(0.1)],
     )
+    weight = models.FloatField(
+        default=0,
+        help_text=_("Peso do produto atual"),
+        verbose_name=_("Peso do produto"),
+        null=False, blank=False,
+        validators=[MinValueValidator(0.1)],
+    )
+    width = models.IntegerField(
+        default=0,
+        help_text=_("Largura da Imagem"),
+        verbose_name=_("Largura da Imagem")
+    )
+    height = models.IntegerField(
+        default=0,
+        help_text=_("Altura da Imagem"),
+        verbose_name=_("Altura da Imagem")
+    )
+    illustration = models.ImageField(null=False, blank=False,
+                                     width_field="width",
+                                     height_field="height",
+                                     help_text=_("Ilustração"),
+                                     verbose_name=_("Imagem"),
+                                     )
 
     class Meta:
         verbose_name = _('Produto')
