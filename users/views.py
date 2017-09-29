@@ -1,6 +1,6 @@
 from .models import CustomerUser
 from django.contrib import messages
-from django.contrib.auth import authenticate
+from django.contrib.auth import authenticate, login, logout
 from django.core.urlresolvers import reverse
 from django.shortcuts import redirect, render
 from django.views.generic import DetailView, ListView
@@ -8,7 +8,8 @@ from django.views.generic.edit import FormView, UpdateView
 from users.forms import (
     CustomerUserDelectionForm,
     CustomerUserRegistrationForm,
-    CustomerUserUpdateForm)
+    CustomerUserUpdateForm,
+    LoginForm)
 
 
 class CustomerUserRegistrationView(FormView):
@@ -28,7 +29,9 @@ class CustomerUserRegistrationView(FormView):
         form = CustomerUserRegistrationForm(request.POST)
 
         if form.is_valid():
-            user = form.save()
+            user = form.save(commit=False)
+            password = form.cleaned_data['password']
+            user.set_password(password)
             user.save()
 
             # This template name below probably will change
@@ -125,3 +128,35 @@ class CustomerUserListView(ListView):
         context['context_object_name_plural'] = (
             CustomerUser._meta.verbose_name_plural)
         return context
+
+
+class LoginView(FormView):
+    """
+    Class for CustomerUser login view.
+    """
+    http_method_names = [u'get', u'post']
+
+    def get(self, request):
+        if not request.user.is_authenticated:
+            form = LoginForm()
+            response = render(request, 'login.html', {'form': form})
+        else:
+            response = redirect('/user_ja_esta_logado')
+
+        return response
+
+    def post(self, request):
+        form = LoginForm(request.POST)
+
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(request, username=username, password=password)
+
+        if user is not None:
+            login(request, user)
+            response = redirect('/user_logou')
+        else:
+            messages.error(request, 'Nome de usuário e/ou senha incorreto(s).')
+            response = render(request, 'login.html', {'form': form})
+
+        return response
