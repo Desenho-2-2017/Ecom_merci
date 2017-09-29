@@ -13,13 +13,13 @@
       <section id="grid" class="content-section" >
         <div class="row">
         {% for category in categories %}
-            <a href="/category/{{ category.id }}/details/">
+            <a href="/category/{{ category.id }}/products_list/">
                 <p> {{ category.category_name }} </p>
             </a>
         {% endfor %}
         </div>
     </section>
-    
+
   </body>
 
 </html>
