@@ -160,3 +160,19 @@ class LoginView(FormView):
             response = render(request, 'login.html', {'form': form})
 
         return response
+
+
+class LogoutView(FormView):
+    """
+    Class for CustomerUser logout view.
+    """
+    http_method_names = [u'get']
+
+    def get(self, request):
+        if request.user.is_authenticated:
+            logout(request)
+            response = redirect('/user_deslogou')
+        else:
+            response = redirect('/user_nao_esta_logado')
+
+        return response
