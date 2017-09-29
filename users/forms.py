@@ -87,3 +87,12 @@ class CustomerUserUpdateForm(forms.ModelForm):
     class Meta:
         model = CustomerUser
         fields = ['username', 'first_name', 'last_name', 'email', 'password']
+
+
+class LoginForm(forms.Form):
+    """
+    Class for Costumer User Login form
+    """
+
+    username = forms.CharField(label=_("Nome de usuário"))
+    password = forms.CharField(label=_("Senha"), widget=forms.PasswordInput)
