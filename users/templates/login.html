@@ -1,4 +1,5 @@
-{% block content %}
+{%  extends "base.html" %}
+{% block main_content %}
   <h2>Login</h2>
   {% if messages %}
   <ul class="messages">
@@ -12,4 +13,4 @@
     {{ form.as_p }}
     <button type="submit">Logar</button>
   </form>
-{% endblock %}
+{% endblock main_content %}
