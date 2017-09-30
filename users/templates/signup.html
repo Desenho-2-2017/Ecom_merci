@@ -1,8 +1,50 @@
-{% block content %}
-  <h2>Cadastro</h2>
-  <form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Cadastrar</button>
-  </form>
-{% endblock %}
+
+{%  extends "base.html" %}
+{% block main_content %}
+<body>
+  <div class="container">
+<br>
+    <form method="post">
+      {% csrf_token %}
+
+  <body class="green accent-4">
+    <!-- Start Page Loading -->
+    <div id="loader-wrapper">
+        <div id="loader"></div>
+        <div class="loader-section section-left"></div>
+        <div class="loader-section section-right"></div>
+    </div>
+    <!-- End Page Loading -->
+
+
+    <div id="login-page" class="row">
+      <div class="col s12 z-depth-4 card-panel">
+        <form class="login-form">
+          <div class="row">
+            <div class="input-field col s12 center">
+              <h4>Cadastro</h4>
+              <p class="center">Cadastre-se agora !</p>
+            </div>
+          </div>
+          <div class="container">
+          {{ form.as_table }}
+        </div>
+
+            <div class="input-field col s12">
+              <button class="btn waves-effect  green accent-4 right" type="submit" name="action">Cadastrar
+            <i class="material-icons right">send</i>
+            </div>
+
+            <div class="input-field col s12">
+              <p class="margin center medium-small sign-up">Já possui conta? <a>Login</a></p>
+
+          </div>
+        </form>
+      </div>
+    </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</body>
+{% endblock main_content %}
