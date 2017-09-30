@@ -1,14 +1,14 @@
 from .models import CustomerUser
 from django.contrib import messages
-from django.contrib.auth import authenticate
-from django.core.urlresolvers import reverse
+from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import redirect, render
 from django.views.generic import DetailView, ListView
 from django.views.generic.edit import FormView, UpdateView
 from users.forms import (
     CustomerUserDelectionForm,
     CustomerUserRegistrationForm,
-    CustomerUserUpdateForm)
+    CustomerUserUpdateForm,
+    LoginForm)
 
 
 class CustomerUserRegistrationView(FormView):
@@ -28,11 +28,13 @@ class CustomerUserRegistrationView(FormView):
         form = CustomerUserRegistrationForm(request.POST)
 
         if form.is_valid():
-            user = form.save()
+            user = form.save(commit=False)
+            password = form.cleaned_data['password']
+            user.set_password(password)
             user.save()
 
             # This template name below probably will change
-            response = redirect(reverse("detail", args=[user.pk]))
+            response = redirect("/")
         else:
             # This template name below probably will change
             response = render(request, 'signup.html', {'form': form})
@@ -90,15 +92,19 @@ class CustomerUserUpdateView(UpdateView):
         return CustomerUser.objects.all()
 
     def get(self, request, id):
-        instance = CustomerUser.objects.get(id=id)
-        form = CustomerUserUpdateForm(request.POST or None, instance=instance)
+        if request.user.id == int(id):
+            instance = CustomerUser.objects.get(id=id)
+            form = CustomerUserUpdateForm(request.POST or None,
+                                          instance=instance)
 
-        # Temporary template, should redirect to sucess page in the future
-        if form.is_valid():
-            form.save()
-            return redirect('/')
+            # Temporary template, should redirect to sucess page in the future
+            if form.is_valid():
+                form.save()
+                return redirect('/')
 
-        response = render(request, 'edit.html', {'form': form})
+            response = render(request, 'edit.html', {'form': form})
+        else:
+            response = redirect('/')
 
         return response
 
@@ -108,9 +114,13 @@ class CustomerUserDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
 
-        context = super(CustomerUserDetailView,
-                        self).get_context_data(**kwargs)
-        context['context_object_name'] = CustomerUser._meta.verbose_name
+        if self.request.user.id == kwargs['object'].id:
+            context = super(CustomerUserDetailView,
+                            self).get_context_data(**kwargs)
+            context['context_object_name'] = CustomerUser._meta.verbose_name
+        else:
+            context = redirect('/')
+
         return context
 
 
@@ -125,3 +135,51 @@ class CustomerUserListView(ListView):
         context['context_object_name_plural'] = (
             CustomerUser._meta.verbose_name_plural)
         return context
+
+
+class LoginView(FormView):
+    """
+    Class for CustomerUser login view.
+    """
+    http_method_names = [u'get', u'post']
+
+    def get(self, request):
+        if not request.user.is_authenticated:
+            form = LoginForm()
+            response = render(request, 'login.html', {'form': form})
+        else:
+            response = redirect('/')
+
+        return response
+
+    def post(self, request):
+        form = LoginForm(request.POST)
+
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(request, username=username, password=password)
+
+        if user is not None:
+            login(request, user)
+            response = redirect('/')
+        else:
+            messages.error(request, 'Nome de usuário e/ou senha incorreto(s).')
+            response = render(request, 'login.html', {'form': form})
+
+        return response
+
+
+class LogoutView(FormView):
+    """
+    Class for CustomerUser logout view.
+    """
+    http_method_names = [u'get']
+
+    def get(self, request):
+        if request.user.is_authenticated:
+            logout(request)
+            response = redirect('/')
+        else:
+            response = redirect('/')
+
+        return response
