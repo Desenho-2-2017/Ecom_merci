@@ -1,7 +1,6 @@
 from .models import CustomerUser
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
-from django.core.urlresolvers import reverse
 from django.shortcuts import redirect, render
 from django.views.generic import DetailView, ListView
 from django.views.generic.edit import FormView, UpdateView
@@ -35,7 +34,7 @@ class CustomerUserRegistrationView(FormView):
             user.save()
 
             # This template name below probably will change
-            response = redirect(reverse("detail", args=[user.pk]))
+            response = redirect("/")
         else:
             # This template name below probably will change
             response = render(request, 'signup.html', {'form': form})
@@ -95,7 +94,8 @@ class CustomerUserUpdateView(UpdateView):
     def get(self, request, id):
         if request.user.id == int(id):
             instance = CustomerUser.objects.get(id=id)
-            form = CustomerUserUpdateForm(request.POST or None, instance=instance)
+            form = CustomerUserUpdateForm(request.POST or None,
+                                          instance=instance)
 
             # Temporary template, should redirect to sucess page in the future
             if form.is_valid():
@@ -114,7 +114,7 @@ class CustomerUserDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
 
-        if request.user.id == kwargs['object'].id:
+        if self.request.user.id == kwargs['object'].id:
             context = super(CustomerUserDetailView,
                             self).get_context_data(**kwargs)
             context['context_object_name'] = CustomerUser._meta.verbose_name

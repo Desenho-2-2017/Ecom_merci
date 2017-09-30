@@ -3,12 +3,14 @@ from django.contrib import admin
 from django.conf.urls import include
 from django.conf import settings
 from django.conf.urls.static import static
+from .views import HomeView
 
 urlpatterns = [
-    url(r'^', admin.site.urls),
+    url(r'^admin/', admin.site.urls),
     url(r'^users/', include('users.urls')),
     url(r'^products/', include('products.urls')),
     url(r'^category/', include('products.urls')),
+    url(r'^$', HomeView.as_view()),
 ]
 
 if settings.DEBUG:
