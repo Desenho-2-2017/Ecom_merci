@@ -9,6 +9,24 @@
    <a class="carousel-item" href="#one!"><img src="../../../static/images/carrossel5.jpg"></a>
  </div>
 
+ <section id="grid" class="content-section" >
+   <div class="row">
+   {% for product in products %}
+     {% if product.illustration  %}
+       <a href="/products/{{ product.id }}/details/">
+           <br>
+           <p> {{ product.product_name }} </p>
+           <img class="img-responsive" src='{{ product.illustration.url }}'>
+         </div>
+       </a>
+     {% endif %}
+   {% endfor %}
+   </div>
+ </div>
+</section>
+
+
+
 <div class="container">
  <div class="row center-align">
      <div class="col s4">
