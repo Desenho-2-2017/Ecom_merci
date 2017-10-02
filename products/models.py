@@ -30,7 +30,7 @@ class Product(models.Model):
     category_id = models.ForeignKey(ProductCategory)
     stock_quantity = models.PositiveIntegerField(
         help_text=_("Quantidade do produto em estoque"),
-        verbose_name=_("Quandtidade do produto"),
+        verbose_name=_("Quantidade do produto"),
         null=False, blank=False
     )
     price = models.FloatField(
@@ -56,6 +56,13 @@ class Product(models.Model):
         help_text=_("Altura da Imagem"),
         verbose_name=_("Altura da Imagem")
     )
+    PRODUCT_TYPES = (
+        ('PAD', 'Anuncio'),     # PAD, Product Advertising
+        ('STD', 'Padrao'),      # STD, Standard Product
+    )
+    product_type = models.CharField(default='Padrao', max_length=3,
+                                    choices=PRODUCT_TYPES
+                                    )
     illustration = models.ImageField(null=False, blank=False,
                                      width_field="width",
                                      height_field="height",
