@@ -9,28 +9,73 @@
    <a class="carousel-item" href="#one!"><img src="../../../static/images/carrossel5.jpg"></a>
  </div>
 
+ <div class="products">
+      {% for product in products %}
+     {% if product.illustration  %}
+       <!-- {% if product.product_type == "PAD" %} -->
+       <a href="/products/{{ product.id }}/details/">
+           <br>
+           <p> {{ product.product_name }} </p>
+           <img src='{{ product.illustration.url }}'>
+
+       </a>
+       <!-- {% endif %} -->
+     {% endif %}
+   {% endfor %}
+ </div>
+
+
+   <!-- <div class="row">
+   {% for product in products %}
+     {% if product.illustration  %}
+        {% if product.product_type == "PAD" %}
+          <a href="/products/{{ product.id }}/details/">
+            <br>
+            <p> {{ product.product_name }} </p>
+            <img class="img-responsive" src='{{ product.illustration.url }}'>
+          </a>
+    </div>
+        {% endif %}
+     {% endif %}
+   {% endfor %}
+   </div>
+ </div> -->
+
  <section id="grid" class="content-section" >
    <div class="row">
    {% for product in products %}
      {% if product.illustration  %}
+       {% if product.product_type == "PAD" %}
        <a href="/products/{{ product.id }}/details/">
            <br>
            <p> {{ product.product_name }} </p>
-           <img class="img-responsive" src='{{ product.illustration.url }}'>
+           <img src='{{ product.illustration.url }}'>
          </div>
        </a>
+       {% endif %}
      {% endif %}
    {% endfor %}
    </div>
  </div>
-</section>
+ </section>
 
 
 
 <div class="container">
  <div class="row center-align">
      <div class="col s4">
-      Produto 1
+       {% for product in products %}
+         {% if product.illustration  %}
+           <!-- {% if product.product_type == "PAD" %} -->
+           <a href="/products/{{ product.id }}/details/">
+               <br>
+               <p> {{ product.product_name }} </p>
+               <img src='{{ product.illustration.url }}'>
+
+           </a>
+           <!-- {% endif %} -->
+         {% endif %}
+       {% endfor %}
      </div>
      <div class="col s4">
         Produto 2
