@@ -11,3 +11,4 @@ psycopg2
 django-suit==0.2.25
 Pillow
 django-staticfiles
+django-pagseguro

@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_pagseguro',
 ]
 
 MIDDLEWARE = [
@@ -127,7 +128,6 @@ SUIT_CONFIG = {
 }
 
 # Static Files (CSS, JavaScript, Images)
-
 STATIC_URL = '/static/'
 
 # Add these new lines
@@ -135,6 +135,15 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
 
+# Products static files
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), "ProductsMedia")
+
+# Pagseguro constants
+PAGSEGURO_EMAIL_COBRANCA = 'Ecom_merci@gmail.com'
+PAGSEGURO_TOKEN = 'token_extremamente_criptografada'
+# url para receber o POST de retorno do pagseguro
+PAGSEGURO_URL_RETORNO = '/pagseguro/retorno/'
+# Placeholder url final para redirecionamento
+PAGSEGURO_URL_FINAL = '/obrigado/'
