@@ -33,6 +33,7 @@ else:
 INSTALLED_APPS = [
     'users.apps.UsersConfig',
     'products.apps.ProductsConfig',
+    'sales.apps.SalesConfig',
     'django_extensions',
     'suit',
     'django.contrib.admin',
