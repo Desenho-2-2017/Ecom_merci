@@ -1,6 +1,7 @@
-from django.shortcuts import render
+from cart.views import CartManagement
 from django.http import Http404
-from .models import (ProductCategory, Product)
+from django.shortcuts import redirect, render
+from .models import (Product, ProductCategory)
 
 
 def productIndexView(request):
@@ -41,3 +42,11 @@ def categoryDetailView(request, category_id):
     }
 
     return render(request, "categoryDetail.html", context)
+
+
+def addProductToCartView(request, product_id):
+
+    quantity = request.POST['quantity']
+    CartManagement.addToCart(request, product_id, quantity)
+
+    return redirect('/cart/cart_detail')
