@@ -1,8 +1,8 @@
 
 <!DOCTYPE html>
-<html>
+<html style="height:100%">
 {% load i18n %}
-<body>
+<body style="height:100%; position:relative">
   <head>
 
     <!--Import Google Icon Font-->
@@ -35,8 +35,11 @@
       <script>
       $(document).ready(function(){
             $('.slider').slider();
+            $(".button-collapse").sideNav();
           });
       </script>
+
+
 
 <script>
       // Pause slider
@@ -48,6 +51,12 @@ $('.slider').slider('next');
 // Previous slide
 $('.slider').slider('prev');
 </script>
+
+<script>
+$(document).ready(function(){
+     $('.carousel').carousel();
+   });
+  </script>
 
   </main>
 

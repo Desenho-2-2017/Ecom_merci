@@ -1,5 +1,5 @@
-{% block content %}
-  <h2>Login</h2>
+{%  extends "base.html" %}
+{% block main_content %}
   {% if messages %}
   <ul class="messages">
       {% for message in messages %}
@@ -7,9 +7,56 @@
       {% endfor %}
   </ul>
   {% endif %}
+  <body class="light-green lighten-5">
+
+    <div class="container">
+  <br>
+
   <form method="post">
     {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Logar</button>
-  </form>
-{% endblock %}
+
+    <!-- Start Page Loading -->
+    <div id="loader-wrapper">
+        <div id="loader"></div>
+        <div class="loader-section section-left"></div>
+        <div class="loader-section section-right"></div>
+    </div>
+    <!-- End Page Loading -->
+
+    <div class="container">
+    <div id="login-page" class="row">
+      <div class="col s12 z-depth-5 card-panel">
+        <form class="login-form">
+          <div class="row">
+            <div class="input-field col s12 center">
+              <h4>Login</h4>
+            </div>
+          </div>
+
+          <div class="container">
+          {{ form.as_table }}
+        </div>
+
+
+            <div class="input-field col s12">
+              <button class="btn waves-effect  black accent-4 right" type="submit" name="action">Entrar
+            <i class="material-icons right">send</i>
+            </div>
+
+            <div class="input-field col s12">
+
+              <p class="margin center medium-small sign-up">Não possui conta? <a href="/users/sign_up/">Cadastre-se</a></p>
+              <br>
+          </div>
+        </form>
+      </div>
+      </div>
+      </div>
+    </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <br>
+</body>
+{% endblock main_content %}

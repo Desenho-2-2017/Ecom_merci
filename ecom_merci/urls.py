@@ -10,6 +10,7 @@ urlpatterns = [
     url(r'^users/', include('users.urls')),
     url(r'^products/', include('products.urls')),
     url(r'^category/', include('products.urls')),
+    url(r'^cart/', include('cart.urls')),
     url(r'^$', HomeView.as_view()),
 ]
 

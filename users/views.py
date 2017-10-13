@@ -4,11 +4,21 @@ from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import redirect, render
 from django.views.generic import DetailView, ListView
 from django.views.generic.edit import FormView, UpdateView
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 from users.forms import (
     CustomerUserDelectionForm,
     CustomerUserRegistrationForm,
     CustomerUserUpdateForm,
     LoginForm)
+
+
+def auth_view_decorator(function_decorator):
+    def simple_decorator(View):
+        View.dispatch = method_decorator(function_decorator)(View.dispatch)
+        return View
+
+    return simple_decorator
 
 
 class CustomerUserRegistrationView(FormView):
@@ -42,6 +52,7 @@ class CustomerUserRegistrationView(FormView):
         return response
 
 
+@auth_view_decorator(login_required(login_url='/users/login/'))
 class CustomerUserDelectionView(FormView):
 
     http_method_names = [u'get', u'post']
@@ -78,6 +89,7 @@ class CustomerUserDelectionView(FormView):
         return response
 
 
+@auth_view_decorator(login_required(login_url='/users/login/'))
 class CustomerUserUpdateView(UpdateView):
     """
     Class for CustomerUser edit/update view implementation
@@ -109,6 +121,7 @@ class CustomerUserUpdateView(UpdateView):
         return response
 
 
+@auth_view_decorator(login_required(login_url='/users/login/'))
 class CustomerUserDetailView(DetailView):
     model = CustomerUser
 
@@ -169,6 +182,7 @@ class LoginView(FormView):
         return response
 
 
+@auth_view_decorator(login_required(login_url='/users/login/'))
 class LogoutView(FormView):
     """
     Class for CustomerUser logout view.

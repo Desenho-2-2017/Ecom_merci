@@ -1,7 +1,105 @@
 {%  extends "base.html" %}
 {% block main_content %}
+<body>
+ <br>
+ <div class="carousel carousel-slider center" data-indicators="true">
+  <div class="carousel-item red white-text" href="#one!">
+    <h2>First Panel</h2>
+    <p class="white-text">This is your first panel</p>
+  </div>
+  <div class="carousel-item amber white-text" href="#two!">
+    <h2>Second Panel</h2>
+    <p class="white-text">This is your second panel</p>
+  </div>
+  <div class="carousel-item green white-text" href="#three!">
+    <h2>Third Panel</h2>
+    <p class="white-text">This is your third panel</p>
+  </div>
+  <div class="carousel-item blue white-text" href="#four!">
+    <h2>Fourth Panel</h2>
+    <p class="white-text">This is your fourth panel</p>
+  </div>
+</div>
+
+ <div class="products">
+      {% for product in products %}
+     {% if product.illustration  %}
+       <!-- {% if product.product_type == "PAD" %} -->
+       <a href="/products/{{ product.id }}/details/">
+           <br>
+           <p> {{ product.product_name }} </p>
+           <img src='{{ product.illustration.url }}'>
+
+       </a>
+       <!-- {% endif %} -->
+     {% endif %}
+   {% endfor %}
+ </div>
 
 
-<h2> Pagina inicial </h2>
+   <!-- <div class="row">
+   {% for product in products %}
+     {% if product.illustration  %}
+        {% if product.product_type == "PAD" %}
+          <a href="/products/{{ product.id }}/details/">
+            <br>
+            <p> {{ product.product_name }} </p>
+            <img class="img-responsive" src='{{ product.illustration.url }}'>
+          </a>
+    </div>
+        {% endif %}
+     {% endif %}
+   {% endfor %}
+   </div>
+ </div> -->
 
+ <section id="grid" class="content-section" >
+   <div class="row">
+   {% for product in products %}
+     {% if product.illustration  %}
+       {% if product.product_type == "PAD" %}
+       <a href="/products/{{ product.id }}/details/">
+           <br>
+           <p> {{ product.product_name }} </p>
+           <img src='{{ product.illustration.url }}'>
+         </div>
+       </a>
+       {% endif %}
+     {% endif %}
+   {% endfor %}
+   </div>
+ </div>
+ </section>
+
+
+
+<div class="container">
+ <div class="row center-align">
+     <div class="col s4">
+       {% for product in products %}
+         {% if product.illustration  %}
+           <!-- {% if product.product_type == "PAD" %} -->
+           <a href="/products/{{ product.id }}/details/">
+               <br>
+               <p> {{ product.product_name }} </p>
+               <img src='{{ product.illustration.url }}'>
+
+           </a>
+           <!-- {% endif %} -->
+         {% endif %}
+       {% endfor %}
+     </div>
+     <div class="col s4">
+        Produto 1
+     </div>
+     <div class="col s4">
+        Produto 2
+     </div>
+     <div class="col s4">
+       Produto 3
+     </div>
+
+   </div>
+ </div>
+</body>
 {% endblock main_content %}

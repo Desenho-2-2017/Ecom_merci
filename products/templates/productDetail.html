@@ -1,3 +1,5 @@
+{%  extends "base.html" %}
+{% block main_content %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -17,6 +19,13 @@
             <img class="img-responsive" src='{{ product.illustration.url }}' alt="">
           </a>
 
+          <p>Quantidade</p>
+          <form action={% url 'addProductToCart' product.id %} method="POST">
+            {% csrf_token %}
+            <input type="number" name="quantity" min="1" max="100" required><br>
+            <input type="submit" value="Adicionar ao carrinho">
+          </form>
+
           <p> Preco do produto: </p>
           <p>{{ product.price }}</p>
           <br></br>
@@ -33,3 +42,4 @@
       </div>
   </body>
 </html>
+{% endblock main_content %}
