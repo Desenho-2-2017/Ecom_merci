@@ -14,7 +14,7 @@ class Cart(models.Model):
         ordering = ('-creation_date',)
 
     def __str__(self):
-        return self.creation_date
+        return str(self.creation_date)
 
 
 class ItemManager(models.Manager):

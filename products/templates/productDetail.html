@@ -19,6 +19,13 @@
             <img class="img-responsive" src='{{ product.illustration.url }}' alt="">
           </a>
 
+          <p>Quantidade</p>
+          <form action="" method="POST">
+            {% csrf_token %}
+            <input type="number" name="quantity" min="1" max="100"><br>
+            <input type="submit" value="addToCart">
+          </form>
+
           <p> Preco do produto: </p>
           <p>{{ product.price }}</p>
           <br></br>
