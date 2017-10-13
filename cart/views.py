@@ -10,7 +10,7 @@ class CartManagement(View):
     def addToCart(request, product_id, quantity):
         product = Product.objects.get(id=product_id)
         cart = Cart(request)
-        cart.add(product, product.unit_price, quantity)
+        cart.add(product, product.price, quantity)
 
     def removeFromCart(request, product_id):
         product = Product.objects.get(id=product_id)

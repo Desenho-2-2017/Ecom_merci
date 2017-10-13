@@ -13,8 +13,8 @@ class Cart(models.Model):
         verbose_name_plural = _('carts')
         ordering = ('-creation_date',)
 
-    def __unicode__(self):
-        return unicode(self.creation_date)
+    def __str__(self):
+        return self.creation_date
 
 
 class ItemManager(models.Manager):
