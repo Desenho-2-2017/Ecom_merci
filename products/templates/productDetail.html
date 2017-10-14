@@ -23,7 +23,7 @@
           <form action={% url 'addProductToCart' product.id %} method="POST">
             {% csrf_token %}
             <input type="number" name="quantity" min="1" max="100" required><br>
-            <input type="submit" value="addToCart">
+            <input type="submit" value="Adicionar ao carrinho">
           </form>
 
           <p> Preco do produto: </p>
