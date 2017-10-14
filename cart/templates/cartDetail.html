@@ -1,0 +1,40 @@
+{%  extends "base.html" %}
+{% block main_content %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Carrinho de Compras</title>
+  </head>
+
+  <body>
+
+    <h1>Carrinho de Compras</h1>
+
+    <table>
+      <tr>
+          <th>Produto</th>
+          <th>Quantidade</th>
+          <th>Preco Total</th>
+      </tr>
+      {% for item in cart %}
+      <tr>
+          <td>{{ item.product.product_name }}</td>
+          <td>{{ item.quantity }}</td>
+          <td>{{ item.total_price }}</td>
+          <td>
+            <form action={% url 'removeProductFromCart' item.product.id %} method="POST">
+              {% csrf_token %}
+              <input type="submit" value="Remover do carrinho">
+            </form>
+          </td>
+      </tr>
+      {% endfor %}
+    </table>
+    <hr></hr>
+    <br>
+  </body>
+
+</html>
+{% endblock main_content %}

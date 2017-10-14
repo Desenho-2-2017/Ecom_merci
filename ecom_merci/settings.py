@@ -33,6 +33,8 @@ else:
 INSTALLED_APPS = [
     'users.apps.UsersConfig',
     'products.apps.ProductsConfig',
+    'cart.apps.CartConfig',
+    'sales.apps.SalesConfig',
     'django_extensions',
     'suit',
     'django.contrib.admin',
@@ -41,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'paypal.standard.ipn',
 ]
 
 MIDDLEWARE = [
@@ -127,7 +130,6 @@ SUIT_CONFIG = {
 }
 
 # Static Files (CSS, JavaScript, Images)
-
 STATIC_URL = '/static/'
 
 # Add these new lines
@@ -135,6 +137,7 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
 
+# Products static files
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), "ProductsMedia")
