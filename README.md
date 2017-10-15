@@ -1,4 +1,5 @@
-[![Travis CI Build Status](https://travis-ci.org/Desenho-2-2017/Ecom_merci.svg?branch=master)](https://travis-ci.org/Desenho-2-2017/Ecom_merci) 
+[![Travis CI Build Status](https://travis-ci.org/Desenho-2-2017/Ecom_merci.svg?branch=master)](https://travis-ci.org/Desenho-2-2017/Ecom_merci)
+[![Maintainability](https://api.codeclimate.com/v1/badges/e7017a44b920559d9940/maintainability)](https://codeclimate.com/github/Desenho-2-2017/Ecom_merci/maintainability)
 
 # Ecom_Merci
 
