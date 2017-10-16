@@ -99,3 +99,8 @@ class Product(models.Model):
 
     def __str__(self):
         return self.product_name
+
+
+    @classmethod
+    def filtro_nome_produto(cls, nome):
+        return Product.objects.filter(product_name__contains=nome)
