@@ -1,8 +1,9 @@
-{% block content %}
+{%  extends "base.html" %}
+{% block main_content %}
   <h2>Mudar senha</h2>
   <form method="post">
     {% csrf_token %}
     {{ form.as_p }}
     <button type="submit">Mudar senha</button>
   </form>
-{% endblock %}
+{% endblock main_content %}

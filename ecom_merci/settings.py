@@ -5,11 +5,7 @@ from unipath import Path
 import os
 
 BASE_DIR = Path(__file__).ancestor(1)
-#BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-#BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__))
-#BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PROJECT_DIR = Path(__file__).ancestor(2)
-#ROOT_PATH = os.path.dirname(__file__)
 
 SECRET_KEY = config('SECRET_KEY', default='')
 
@@ -37,6 +33,8 @@ else:
 INSTALLED_APPS = [
     'users.apps.UsersConfig',
     'products.apps.ProductsConfig',
+    'cart.apps.CartConfig',
+    'sales.apps.SalesConfig',
     'django_extensions',
     'suit',
     'django.contrib.admin',
@@ -45,7 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'Default',
+    'paypal.standard.ipn',
 ]
 
 MIDDLEWARE = [
@@ -133,11 +131,13 @@ SUIT_CONFIG = {
 
 # Static Files (CSS, JavaScript, Images)
 STATIC_URL = '/static/'
-STATIC_ROOT = '/static/'
-STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"), )
 
-#STATICFILES_DIRS = os.path.join(os.path.dirname(BASE_DIR), "Static")
-#Path(__file__).ancestor(1)
-#BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+# Add these new lines
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
+
+# Products static files
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), "ProductsMedia")
