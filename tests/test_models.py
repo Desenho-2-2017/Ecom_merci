@@ -1,7 +1,11 @@
 import pytest
 from users.models import (PhoneNumber, CustomerUser)
 from products.models import (Product, ProductCategory)
-
+from cart.models import (
+    Cart,
+    # ItemManager,
+    # Item
+    )
 # Remenber to use test_TESTNAME.py
 
 
@@ -94,3 +98,44 @@ def test_product():
 
     assert products >= 1
     product.delete()
+
+
+@pytest.mark.django_db
+def test_cart():
+
+    cart = Cart()
+
+    cart.creation_date = '2010-02-12'
+    cart.checked_out = False
+
+    cart.save()
+    count_carts = Cart.objects.all().count()
+
+    assert count_carts >= 1
+    cart.delete()
+
+#
+# @pytest.mark.django_db
+# def test_item():
+#     cart = Cart()
+
+#     cart.creation_date = '2010-02-12'
+#     cart.checked_out = False
+
+#     cart.save()
+#     cart.delete()
+
+#     item = ItemManager()
+
+#     item.cart = cart
+#     item.quantity = 12
+#     item.unit_price = 12.9
+#     item.content_type = item.Product()
+#     item.object_id = 12
+#     item.objects = item.ItemManager()
+
+#     item.save()
+#     count_items = Item.objects.all().count()
+
+#     assert count_items >= 1
+#     item.delete()
