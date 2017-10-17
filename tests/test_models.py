@@ -1,5 +1,6 @@
 import pytest
 from users.models import (PhoneNumber, CustomerUser)
+from products.models import (Product, ProductCategory)
 
 # Remenber to use test_TESTNAME.py
 
@@ -55,3 +56,41 @@ def test_customer_user():
     phone_number2.delete()
     phone_number3.delete()
     user.delete()
+
+
+@pytest.mark.django_db
+def test_product_category():
+    category = ProductCategory()
+    category.category_name = "Tenis"
+
+    category.save()
+    category_count = ProductCategory.objects.all().count()
+    assert category_count >= 1
+    category.delete()
+
+
+@pytest.mark.django_db
+def test_product():
+
+    category = ProductCategory()
+    category.category_name = "Tenis"
+
+    category.save()
+
+    product = Product()
+
+    product.product_name = "Metcon"
+    product.category_id = category
+    product.stock_quantity = 10
+    product.price = 459
+    product.weight = 10
+    product.width = 20
+    product.height = 10
+    product.product_type = "Padrao"
+
+    product.save()
+
+    products = Product.objects.all().count()
+
+    assert products >= 1
+    product.delete()
