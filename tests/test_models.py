@@ -1,11 +1,11 @@
 import pytest
-from users.models import (PhoneNumber, CustomerUser)
 from products.models import (Product, ProductCategory)
 from cart.models import (
     Cart,
     # ItemManager,
     # Item
     )
+from users.models import (PhoneNumber, CustomerUser, CreditCard)
 # Remenber to use test_TESTNAME.py
 
 
@@ -139,3 +139,26 @@ def test_cart():
 
 #     assert count_items >= 1
 #     item.delete()
+
+
+@pytest.mark.django_db
+def test_credit_card():
+    user = CustomerUser()
+    user.name = 'Gabriela'
+    user.last_name = 'Gama'
+    user.set_password('123456')
+    user.email = 'gaby@mail.com'
+    user.save()
+
+    credit_card = CreditCard()
+    credit_card.owner_name = 'Celine Dion'
+    credit_card.card_number = '9078563421345678'
+    credit_card.security_code = '459'
+    credit_card.user = user
+    credit_card.expire_date = '2023-08-10'
+    credit_card.provider = 'visa'
+    credit_card.save()
+
+    count = CreditCard.objects.filter(pk=credit_card.pk).count()
+    assert count >= 1
+    credit_card.delete()
