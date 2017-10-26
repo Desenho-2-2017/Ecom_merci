@@ -83,7 +83,7 @@ class Product(models.Model):
         output.seek(0)
 
         self.illustration = InMemoryUploadedFile(output, 'ImageField',
-                                                 "%s.jpg" % self
+                                                 "%s.png" % self
                                                  .illustration
                                                  .name.split('.')[0],
                                                  'image/jpeg',
