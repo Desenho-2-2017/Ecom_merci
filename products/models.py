@@ -1,7 +1,11 @@
 from __future__ import unicode_literals
 from django.db import models
+from PIL import Image
+from io import BytesIO
 from django.utils.translation import ugettext_lazy as _
 from django.core.validators import MinValueValidator
+from django.core.files.uploadedfile import InMemoryUploadedFile
+import sys
 
 
 class ProductCategory(models.Model):
@@ -46,13 +50,13 @@ class Product(models.Model):
         null=False, blank=False,
         validators=[MinValueValidator(0.1)],
     )
-    width = models.IntegerField(
-        default=0,
+    width = models.PositiveIntegerField(
+        default=500,
         help_text=_("Largura da Imagem"),
         verbose_name=_("Largura da Imagem")
     )
-    height = models.IntegerField(
-        default=0,
+    height = models.PositiveIntegerField(
+        default=500,
         help_text=_("Altura da Imagem"),
         verbose_name=_("Altura da Imagem")
     )
@@ -64,11 +68,29 @@ class Product(models.Model):
                                     choices=PRODUCT_TYPES
                                     )
     illustration = models.ImageField(null=False, blank=False,
-                                     width_field="width",
-                                     height_field="height",
+                                     width_field='width',
+                                     height_field='height',
                                      help_text=_("Ilustração"),
                                      verbose_name=_("Imagem"),
                                      )
+
+    def save(self):
+        image = Image.open(self.illustration)
+        output = BytesIO()
+
+        image = image.resize((500, 500))
+        image.save(output, format='PNG', quality=100)
+        output.seek(0)
+
+        self.illustration = InMemoryUploadedFile(output, 'ImageField',
+                                                 "%s.jpg" % self
+                                                 .illustration
+                                                 .name.split('.')[0],
+                                                 'image/jpeg',
+                                                 sys.getsizeof(output),
+                                                 None)
+
+        super(Product, self).save()
 
     class Meta:
         verbose_name = _('Produto')
