@@ -11,6 +11,7 @@ urlpatterns = [
     url(r'^products/', include('products.urls')),
     url(r'^category/', include('products.urls')),
     url(r'^cart/', include('cart.urls')),
+    url(r'^checkout/', include('credit_card.urls')),
     url(r'^$', HomeView.as_view()),
 ]
 
