@@ -24,4 +24,4 @@ class CreditCard(models.Model):
         verbose_name_plural = _(credit_card_verbose_name_plural)
 
     def __str__(self):
-        return ("************" + self.card_number[-4:])
+      return ("************" + self.card_number[-4:])

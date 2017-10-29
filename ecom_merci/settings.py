@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'products.apps.ProductsConfig',
     'cart.apps.CartConfig',
     'sales.apps.SalesConfig',
+    'credit_card.apps.CreditCardConfig',
     'django_extensions',
     'suit',
     'django.contrib.admin',

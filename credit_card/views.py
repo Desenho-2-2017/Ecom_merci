@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.views.generic.edit import FormView
+from .models import CreditCard
 
 class CreditCardDetailView(FormView):
     """ Class for CreditCard registration view."""
