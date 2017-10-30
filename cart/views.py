@@ -1,9 +1,9 @@
+from cart.cart import Cart
 from django.shortcuts import redirect
 from django.shortcuts import render_to_response
-from cart.cart import Cart
-from products.models import Product
-from django.views.generic import View
 from django.views.decorators.csrf import csrf_exempt
+from django.views.generic import View
+from products.models import Product
 
 
 class CartManagement(View):

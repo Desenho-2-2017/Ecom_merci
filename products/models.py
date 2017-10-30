@@ -1,11 +1,11 @@
 from __future__ import unicode_literals
-from django.db import models
-from PIL import Image
-from io import BytesIO
-from django.utils.translation import ugettext_lazy as _
-from django.core.validators import MinValueValidator
-from django.core.files.uploadedfile import InMemoryUploadedFile
 import sys
+from io import BytesIO
+from PIL import Image
+from django.core.files.uploadedfile import InMemoryUploadedFile
+from django.core.validators import MinValueValidator
+from django.db import models
+from django.utils.translation import ugettext_lazy as _
 
 
 class ProductCategory(models.Model):
