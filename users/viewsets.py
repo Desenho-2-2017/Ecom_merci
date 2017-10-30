@@ -100,6 +100,7 @@ class CustomerUserViewSet(ModelViewSet):
             pk,
             **kwargs
             )
+
         return response
 
 
