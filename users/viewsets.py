@@ -1,6 +1,16 @@
 from rest_framework.viewsets import ModelViewSet
-from .models import (CustomerUser, PhoneNumber, CreditCard, ShippingAddress)
-from .serializers import (CustomerUserSerializer, PhoneNumberSerializer, CreditCardSerializer, ShippingAddressSerializer)
+from .models import (
+    CustomerUser,
+    PhoneNumber,
+    CreditCard,
+    ShippingAddress
+    )
+from .serializers import (
+    CustomerUserSerializer,
+    PhoneNumberSerializer,
+    CreditCardSerializer,
+    ShippingAddressSerializer
+    )
 
 
 class CustomerUserViewSet(ModelViewSet):
