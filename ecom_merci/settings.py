@@ -44,8 +44,22 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'paypal.standard.ipn',
-    'rest_framework'
+    'rest_framework',
+    'rest_framework_swagger',
+    'rest_framework.authtoken'
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
+    )
+}
+
+SWAGGER_SETTINGS = {
+    'USE_SESSION_AUTH': False
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
