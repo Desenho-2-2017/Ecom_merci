@@ -1,3 +1,4 @@
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.viewsets import ModelViewSet
 from .models import (
     CustomerUser,
@@ -109,6 +110,7 @@ class PhoneNumberViewSet(ModelViewSet):
     """
     queryset = PhoneNumber.objects.all()
     serializer_class = PhoneNumberSerializer
+    permission_classes = (IsAuthenticated,)
 
 
 class CreditCardViewSet(ModelViewSet):
@@ -118,6 +120,7 @@ class CreditCardViewSet(ModelViewSet):
     """
     queryset = CreditCard.objects.all()
     serializer_class = CreditCardSerializer
+    permission_classes = (IsAuthenticated,)
 
 
 class ShippingAddressViewSet(ModelViewSet):
@@ -127,3 +130,4 @@ class ShippingAddressViewSet(ModelViewSet):
     """
     queryset = ShippingAddress.objects.all()
     serializer_class = ShippingAddressSerializer
+    permission_classes = (IsAuthenticated,)
