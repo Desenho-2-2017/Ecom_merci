@@ -13,3 +13,4 @@ django-suit==0.2.25
 Pillow
 django-staticfiles
 django-paypal
+django-rest-swagger
