@@ -1,16 +1,16 @@
-from .models import CustomerUser
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
+from django.utils.decorators import method_decorator
 from django.views.generic import DetailView, ListView
 from django.views.generic.edit import FormView, UpdateView
-from django.contrib.auth.decorators import login_required
-from django.utils.decorators import method_decorator
 from users.forms import (
     CustomerUserDelectionForm,
     CustomerUserRegistrationForm,
     CustomerUserUpdateForm,
     LoginForm)
+from .models import CustomerUser
 
 
 def auth_view_decorator(function_decorator):
@@ -30,7 +30,6 @@ class CustomerUserRegistrationView(FormView):
 
     def get(self, request):
         form = CustomerUserRegistrationForm()
-        # This template name below probably will change
         response = render(request, 'signup.html', {'form': form})
         return response
 
@@ -43,10 +42,8 @@ class CustomerUserRegistrationView(FormView):
             user.set_password(password)
             user.save()
 
-            # This template name below probably will change
             response = redirect("/")
         else:
-            # This template name below probably will change
             response = render(request, 'signup.html', {'form': form})
 
         return response
@@ -109,7 +106,6 @@ class CustomerUserUpdateView(UpdateView):
             form = CustomerUserUpdateForm(request.POST or None,
                                           instance=instance)
 
-            # Temporary template, should redirect to sucess page in the future
             if form.is_valid():
                 form.save()
                 return redirect('/')
