@@ -22,6 +22,15 @@ def productDetailView(request, product_id):
     return render(request, "productDetail.html", {'product': product})
 
 
+def productFilterView(request):
+    products = Product.objects.all()
+    var_get_search = request.GET.get('search_product')
+    if var_get_search is not None:
+        products = products.filter(product_name__contains=var_get_search)
+
+    return render(request, 'productFilter.html', {'products': products})
+
+
 def categoryIndexView(request):
 
     queryset = ProductCategory.objects.all()
