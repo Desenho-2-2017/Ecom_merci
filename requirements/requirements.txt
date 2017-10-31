@@ -1,5 +1,6 @@
 Django==1.11.4
 django-extensions==1.8.1
+djangorestframework==3.7.1
 pickleshare==0.7.4
 ptyprocess==0.5.2
 python-decouple==3.1
