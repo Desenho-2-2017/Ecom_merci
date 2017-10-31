@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+<!DOCTYPE html>
+
+{% block title %}
+    <title>Busca</title>
+{% endblock title %}
+
+{% block main_content %}
+  <!-- search form -->
+  <html lang="en">
+    <body>
+      <div class="row">
+        <form class="navbar-form navbar-right" action="." method="get">
+            <input id="search_product" name="search_product" type="text" placeholder="Search..." class="form-control">
+            <button type="submit" class="btn btn-success form-control">Search</button>
+        </form>
+      </div>
+
+      <div class="row">
+        <h1>Todos os Produtos</h1>
+        <div class="row">
+        {% for product in products %}
+          {% if product.illustration  %}
+            <a href="/products/{{ product.id }}/details/">
+                <br>
+                <p> {{ product.product_name }} </p>
+                <img class="img-responsive" src='{{ product.illustration.url }}'>
+                <p>Preço R${{product.price}} </p>
+              </div>
+            </a>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </body>
+  </html>
+
+{% endblock main_content %}
