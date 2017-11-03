@@ -9,12 +9,18 @@ from django.utils.translation import ugettext_lazy as _
 
 
 class ProductCategory(models.Model):
-    """docstring for Category"""
+    """docstring for Category."""
+
     category_name = models.CharField(
         help_text=_("Nome da categoria de produtos"),
         verbose_name=_("Categoria de Produto"),
         max_length=100, null=False, blank=False
     )
+    father_category = models.ForeignKey(
+        'self',
+        null=True,
+        blank=True
+        )
 
     class Meta:
         verbose_name = _('Categoria de Produtos')
@@ -25,7 +31,8 @@ class ProductCategory(models.Model):
 
 
 class Product(models.Model):
-    """docstring for Products"""
+    """docstring for Products."""
+
     product_name = models.CharField(
         help_text=_("Nome completo do Produto"),
         verbose_name=_("Nome do produto"),
