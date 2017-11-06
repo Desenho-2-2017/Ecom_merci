@@ -63,3 +63,13 @@ Copie o output do comando para a linha SECRET_KEY do seu arquivo .env
 ```
 python manage.py runserver
 ```
+
+### Verificação de Commits
+O projeto possui integração continua com o [travis](https://travis-ci.org/Desenho-2-2017/Ecom_merci) e executa ao menos 2 verificações:
+- pytest
+- flake8
+
+para evitar falhas no build, você pode executa-los manualmente ou "instalar" o pre-commit hook através do script:
+```
+./scripts/git_hooks/install_pre_commit.sh
+```
