@@ -9,9 +9,10 @@ from .serializers import (
     ProductSerializer
     )
 
+
 class ProductCategoryViewSet(ModelViewSet):
     """
-    API endpoint that allows phone numbers to be
+    API endpoint that allows category to be
     viewed, created, deleted or edited.
     """
     queryset = ProductCategory.objects.all()
@@ -21,7 +22,7 @@ class ProductCategoryViewSet(ModelViewSet):
 
 class ProductViewSet(ModelViewSet):
     """
-    API endpoint that allows credit cards to be
+    API endpoint that allows products to be
     viewed, created, deleted or edited.
     """
     queryset = Product.objects.all()

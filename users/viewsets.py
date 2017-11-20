@@ -76,7 +76,26 @@ class CustomerUserViewSet(ModelViewSet):
 
     def retrieve(self, request, pk=None):
         """
-        API endpoint that allows a specific user to be viewed.
+        API endpoint that allows allow the return of a user through the method Get.
+        ---
+        Response example:
+        ```
+        [{
+            "id": 1,
+            "last_login": "date_time",
+            "is_superuser": "boolean",
+            "username": "string",
+            "first_name": "string",
+            "last_name": "string",
+            "email": "string@email.com",
+            "is_staff": "boolean",
+            "is_active": "boolean",
+            "date_joined": "date_time",
+            "groups": [],
+            "user_permissions": [],
+            "phone_numbers": []
+        }]
+        ```
         """
         response = super(CustomerUserViewSet, self).retrieve(request, pk)
         return response
