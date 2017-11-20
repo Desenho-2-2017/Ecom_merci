@@ -10,6 +10,10 @@ from users.viewsets import (
     CreditCardViewSet,
     ShippingAddressViewSet
     )
+from products.viewsets import (
+    ProductCategoryViewSet,
+    ProductViewSet
+)
 from rest_framework_swagger.views import get_swagger_view
 from rest_framework.authtoken import views
 
@@ -20,6 +24,8 @@ router.register(r'customer_users', CustomerUserViewSet)
 router.register(r'phone_numbers', PhoneNumberViewSet)
 router.register(r'credit_cards', CreditCardViewSet)
 router.register(r'shipping_addresses', ShippingAddressViewSet)
+router.register(r'category', ProductCategoryViewSet)
+router.register(r'products', ProductViewSet)
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
