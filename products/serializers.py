@@ -10,6 +10,10 @@ class ProductSerializer(serializers.ModelSerializer):
         model = Product
         fields = "__all__"
 
+    def create(self, validated_data):
+        obj = Product.objects.create(**validated_data)
+        return obj
+
 
 class ProductCategorySerializer(serializers.ModelSerializer):
     class Meta:
