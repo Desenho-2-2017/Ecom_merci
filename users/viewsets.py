@@ -31,9 +31,28 @@ class CustomerUserViewSet(ModelViewSet):
         return CustomerUserSerializerDefault
 
     def list(self, request):
-        """Description:list.
-
+        """
         API endpoint that allows all users to be viewed.
+        ---
+        Response example:
+        Return a list of:
+        ```
+        {
+            "id": "integer",
+            "last_login": "date_time",
+            "is_superuser": "boolean",
+            "username": "string",
+            "first_name": "string",
+            "last_name": "string",
+            "email": "string@email.com",
+            "is_staff": "boolean",
+            "is_active": "boolean",
+            "date_joined": "date_time",
+            "groups": [],
+            "user_permissions": [],
+            "phone_numbers": []
+        }
+        ```
         """
         response = super(CustomerUserViewSet, self).list(request)
         return response
@@ -76,12 +95,13 @@ class CustomerUserViewSet(ModelViewSet):
 
     def retrieve(self, request, pk=None):
         """
-        API endpoint that allows allow the return of a user through the method Get.
+        API endpoint that allows allow the return
+        of a user through the method Get.
         ---
         Response example:
         ```
-        [{
-            "id": 1,
+        {
+            "id": "integer",
             "last_login": "date_time",
             "is_superuser": "boolean",
             "username": "string",
@@ -94,7 +114,7 @@ class CustomerUserViewSet(ModelViewSet):
             "groups": [],
             "user_permissions": [],
             "phone_numbers": []
-        }]
+        }
         ```
         """
         response = super(CustomerUserViewSet, self).retrieve(request, pk)
@@ -103,6 +123,18 @@ class CustomerUserViewSet(ModelViewSet):
     def partial_update(self, request, pk=None, **kwargs):
         """
         API endpoint that allows a user to be edited.
+        ---
+        Parameters:
+        User ID and a JSON with one or more attributes of user
+        Example:
+        ```
+        {
+            "last_login": "date_time",
+            "is_staff": "boolean",
+            "user_permissions": [],
+            "phone_numbers": []
+        }
+        ```
         """
         response = super(CustomerUserViewSet, self).\
             partial_update(request, pk, **kwargs)
@@ -111,6 +143,18 @@ class CustomerUserViewSet(ModelViewSet):
     def update(self, request, pk=None, **kwargs):
         """
         API endpoint that allows a user to be edited.
+        ---
+        Parameters:
+        User ID and a JSON with at least username,
+        telephone and password of user
+        Example:
+        ```
+        {
+            "username": "string",
+            "password": "string",
+            "phone_numbers": []
+        }
+        ```
         """
         response = super(
             CustomerUserViewSet,
