@@ -6,7 +6,6 @@ from .views import HomeView
 from rest_framework import routers
 from users.viewsets import (
     CustomerUserViewSet,
-    PhoneNumberViewSet,
     CreditCardViewSet,
     ShippingAddressViewSet
     )
@@ -21,7 +20,6 @@ schema_view = get_swagger_view(title='Ecom_merci API')
 
 router = routers.DefaultRouter()
 router.register(r'customer_users', CustomerUserViewSet)
-router.register(r'phone_numbers', PhoneNumberViewSet)
 router.register(r'credit_cards', CreditCardViewSet)
 router.register(r'shipping_addresses', ShippingAddressViewSet)
 router.register(r'category', ProductCategoryViewSet)

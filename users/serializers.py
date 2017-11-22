@@ -2,16 +2,9 @@ from rest_framework.authtoken.models import Token
 from rest_framework import serializers
 from .models import (
     CustomerUser,
-    PhoneNumber,
     CreditCard,
     ShippingAddress
     )
-
-
-class PhoneNumberSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = PhoneNumber
-        fields = '__all__'
 
 
 class CustomerUserSerializerDefault(serializers.ModelSerializer):
@@ -28,7 +21,7 @@ class CustomerUserSerializerPOST(serializers.ModelSerializer):
     class Meta:
         model = CustomerUser
         fields = ('pk', 'username', 'first_name', 'last_name',
-                  'email', 'password')
+                  'email', 'password', 'cellphone', 'phone_number')
 
         extra_kwargs = {
             'password': {'write_only': True},

@@ -2,13 +2,11 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.viewsets import ModelViewSet
 from .models import (
     CustomerUser,
-    PhoneNumber,
     CreditCard,
     ShippingAddress
     )
 from .serializers import (
     # CustomerUserSerializer,
-    PhoneNumberSerializer,
     CreditCardSerializer,
     ShippingAddressSerializer,
     CustomerUserSerializerDefault,
@@ -163,18 +161,7 @@ class CustomerUserViewSet(ModelViewSet):
             pk,
             **kwargs
             )
-
         return response
-
-
-class PhoneNumberViewSet(ModelViewSet):
-    """
-    API endpoint that allows phone numbers to be
-    viewed, created, deleted or edited.
-    """
-    queryset = PhoneNumber.objects.all()
-    serializer_class = PhoneNumberSerializer
-    permission_classes = (IsAuthenticated,)
 
 
 class CreditCardViewSet(ModelViewSet):
