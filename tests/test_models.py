@@ -12,9 +12,16 @@ from users.models import (PhoneNumber, CustomerUser, CreditCard)
 @pytest.mark.django_db
 def test_phone_number():
 
-    phone_number = PhoneNumber()
+    user = CustomerUser()
+    user.name = 'Gabriela'
+    user.last_name = 'Gama'
+    user.set_password('123456')
+    user.email = 'gaby@mail.com'
+    user.save()
 
+    phone_number = PhoneNumber()
     phone_number.phone = '33576474'
+    phone_number.user = user
 
     phone_number.save()
     count_phone_numbers = PhoneNumber.objects.all().count()
@@ -25,27 +32,29 @@ def test_phone_number():
 
 @pytest.mark.django_db
 def test_customer_user():
-
-    phone_number = PhoneNumber()
-    phone_number.phone = '33576474'
-    phone_number.save()
-
-    phone_number2 = PhoneNumber()
-    phone_number2.phone = '12345678'
-    phone_number2.save()
-
-    phone_number3 = PhoneNumber()
-    phone_number3.phone = '87654321'
-    phone_number3.save()
-
     user = CustomerUser()
-
     user.name = 'Gabriela'
     user.last_name = 'Gama'
     user.set_password('123456')
     user.email = 'gaby@mail.com'
     user.save()
-    user.phone_numbers.add(phone_number)
+
+    phone_number1 = PhoneNumber()
+    phone_number1.phone = '33576474'
+    phone_number1.user = user
+    phone_number1.save()
+
+    phone_number2 = PhoneNumber()
+    phone_number2.phone = '12345678'
+    phone_number2.user = user
+    phone_number2.save()
+
+    phone_number3 = PhoneNumber()
+    phone_number3.phone = '87654321'
+    phone_number3.user = user
+    phone_number3.save()
+
+    user.phone_numbers.add(phone_number1)
     user.phone_numbers.add(phone_number2)
     user.phone_numbers.add(phone_number3)
     user.save()
@@ -53,10 +62,10 @@ def test_customer_user():
     count_users = CustomerUser.objects.filter(pk=user.pk).count()
 
     assert count_users >= 1
-    user.phone_numbers.remove(phone_number)
+    user.phone_numbers.remove(phone_number1)
     user.phone_numbers.remove(phone_number2)
     user.phone_numbers.remove(phone_number3)
-    phone_number.delete()
+    phone_number1.delete()
     phone_number2.delete()
     phone_number3.delete()
     user.delete()

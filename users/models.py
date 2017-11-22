@@ -9,6 +9,7 @@ class PhoneNumber(models.Model):
         help_text=_("Número de telefone. Preencha apenas com númreos."),
         verbose_name=_("Número de Telefone"),
         max_length=15, null=False, blank=False)
+    user = models.ForeignKey('users.CustomerUser')
 
     class Meta:
         verbose_name = _('Número de Telefone')
@@ -20,7 +21,7 @@ class PhoneNumber(models.Model):
 
 class CustomerUser(User):
     """docstring for CustomerUser"""
-    phone_numbers = models.ManyToManyField(PhoneNumber)
+    phone_numbers = models.ManyToManyField('PhoneNumber')
 
     class Meta:
         verbose_name = _('Cliente')
