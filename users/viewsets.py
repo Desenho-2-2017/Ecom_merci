@@ -1,4 +1,3 @@
-from rest_framework.permissions import IsAuthenticated
 from rest_framework.viewsets import ModelViewSet
 from .models import (
     CustomerUser,
@@ -12,6 +11,10 @@ from .serializers import (
     CustomerUserSerializerDefault,
     CustomerUserSerializerPOST,
     )
+from .permissions import (
+    CustomerUserPermissions,
+    DefaultUserItemsPermissions,
+)
 
 
 class CustomerUserViewSet(ModelViewSet):
@@ -19,7 +22,7 @@ class CustomerUserViewSet(ModelViewSet):
 
     API endpoint that allows users to be viewed, created, deleted or edited.
     """
-
+    permission_classes = (CustomerUserPermissions,)
     queryset = CustomerUser.objects.all()
     # serializer_class = CustomerUserSerializer
 
@@ -93,7 +96,7 @@ class CustomerUserViewSet(ModelViewSet):
 
     def retrieve(self, request, pk=None):
         """
-        API endpoint that allows allow the return
+        API endpoint that allows allow the return\
         of a user through the method Get.
         ---
         Response example:
@@ -124,6 +127,7 @@ class CustomerUserViewSet(ModelViewSet):
         ---
         Parameters:
         User ID and a JSON with one or more attributes of user
+
         Example:
         ```
         {
@@ -171,7 +175,7 @@ class CreditCardViewSet(ModelViewSet):
     """
     queryset = CreditCard.objects.all()
     serializer_class = CreditCardSerializer
-    permission_classes = (IsAuthenticated,)
+    permission_classes = (DefaultUserItemsPermissions,)
 
 
 class ShippingAddressViewSet(ModelViewSet):
@@ -181,4 +185,4 @@ class ShippingAddressViewSet(ModelViewSet):
     """
     queryset = ShippingAddress.objects.all()
     serializer_class = ShippingAddressSerializer
-    permission_classes = (IsAuthenticated,)
+    permission_classes = (DefaultUserItemsPermissions,)
