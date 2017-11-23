@@ -1,6 +1,7 @@
 [![Travis CI Build Status](https://travis-ci.org/Desenho-2-2017/Ecom_merci.svg?branch=master)](https://travis-ci.org/Desenho-2-2017/Ecom_merci)
 [![Maintainability](https://api.codeclimate.com/v1/badges/66c7eec706fdc129d8dd/maintainability)](https://codeclimate.com/github/Desenho-2-2017/Ecom_merci/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/66c7eec706fdc129d8dd/test_coverage)](https://codeclimate.com/github/Desenho-2-2017/Ecom_merci/test_coverage)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 # Ecom_Merci
 
 ## Configuração Dev
