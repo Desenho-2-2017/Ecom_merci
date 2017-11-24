@@ -72,7 +72,9 @@ class CustomerUserViewSet(ModelViewSet):
             "first_name": "string",
             "last_name": "string",
             "email": "string@email.com",
-            "password": "string"
+            "password": "string",
+            "cellphone": "string",
+            "phone_number": "string"
         }
         ```
         Response example:
@@ -84,6 +86,8 @@ class CustomerUserViewSet(ModelViewSet):
             "last_name": "string",
             "email": "string@email.com",
             "password": "string"
+            "cellphone": "string",
+            "phone_number": "string"
         }
         ```
         """
@@ -127,7 +131,7 @@ class CustomerUserViewSet(ModelViewSet):
 
     def partial_update(self, request, pk=None, **kwargs):
         """
-        API endpoint that allows a user to be edited.
+        API endpoint that allows a user to be partial edited.
         ---
         Parameters:
         User ID and a JSON with one or more attributes of user
@@ -159,8 +163,7 @@ class CustomerUserViewSet(ModelViewSet):
         {
             "username": "string",
             "password": "string",
-            "cellphone": "integer",
-            "phone_number": "integer"
+            "cellphone": "integer"
         }
         ```
         """
