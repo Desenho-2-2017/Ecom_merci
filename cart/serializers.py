@@ -11,6 +11,16 @@ class CartSerializerDefault(serializers.ModelSerializer):
         fields = '__all__'
 
 
+class CartSerializerPOST(serializers.ModelSerializer):
+    class Meta:
+        model = Cart
+        fields = ('pk', 'creation_date', 'checked_out')
+
+    def create(self, validated_data):
+        cart = Cart(**validated_data)
+        return cart
+
+
 class ItemSerializerDefault(serializers.ModelSerializer):
     class Meta:
         model = Item
