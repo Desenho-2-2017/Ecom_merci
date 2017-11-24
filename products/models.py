@@ -81,7 +81,12 @@ class Product(models.Model):
                                      verbose_name=_("Imagem"),
                                      )
 
-    def save(self):
+    class Meta:
+        verbose_name = _('Produto')
+        verbose_name_plural = ('Produtos')
+        ordering = ('product_name', 'category_id', 'stock_quantity', 'price')
+
+    def save(self, *args, **kwargs):
         image = Image.open(self.illustration)
         output = BytesIO()
 
@@ -97,12 +102,7 @@ class Product(models.Model):
                                                  sys.getsizeof(output),
                                                  None)
 
-        super(Product, self).save()
-
-    class Meta:
-        verbose_name = _('Produto')
-        verbose_name_plural = ('Produtos')
-        ordering = ('product_name', 'category_id', 'stock_quantity', 'price')
+        super(Product, self).save(*args, **kwargs)
 
     def __str__(self):
         return self.product_name

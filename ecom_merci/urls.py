@@ -6,20 +6,30 @@ from .views import HomeView
 from rest_framework import routers
 from users.viewsets import (
     CustomerUserViewSet,
-    PhoneNumberViewSet,
     CreditCardViewSet,
     ShippingAddressViewSet
     )
+from products.viewsets import (
+    ProductCategoryViewSet,
+    ProductViewSet,
+)
+from cart.viewsets import (
+    CartViewSet,
+    ItemViewSet
+)
 from rest_framework_swagger.views import get_swagger_view
-from rest_framework.authtoken import views
+# from rest_framework.authtoken import views
 
 schema_view = get_swagger_view(title='Ecom_merci API')
 
 router = routers.DefaultRouter()
 router.register(r'customer_users', CustomerUserViewSet)
-router.register(r'phone_numbers', PhoneNumberViewSet)
 router.register(r'credit_cards', CreditCardViewSet)
 router.register(r'shipping_addresses', ShippingAddressViewSet)
+router.register(r'categories', ProductCategoryViewSet)
+router.register(r'products', ProductViewSet)
+router.register(r'cart', CartViewSet)
+router.register(r'item', ItemViewSet)
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -31,7 +41,7 @@ urlpatterns = [
     url(r'^api/', include(router.urls)),
     url(r'^api/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^docs/', schema_view),
-    url(r'^api/tokens/', views.obtain_auth_token),
+    # url(r'^api/tokens/', views.obtain_auth_token),
 ]
 
 if settings.DEBUG:

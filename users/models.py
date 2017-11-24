@@ -3,24 +3,17 @@ from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.models import User
 
 
-class PhoneNumber(models.Model):
-    """docstring for PhoneNumber"""
-    phone = models.CharField(
-        help_text=_("Número de telefone. Preencha apenas com númreos."),
-        verbose_name=_("Número de Telefone"),
-        max_length=15, null=False, blank=False)
-
-    class Meta:
-        verbose_name = _('Número de Telefone')
-        verbose_name_plural = _('Números de Telefone')
-
-    def __str__(self):
-        return self.phone
-
-
 class CustomerUser(User):
     """docstring for CustomerUser"""
-    phone_numbers = models.ManyToManyField(PhoneNumber)
+    cellphone = models.CharField(
+        help_text=_("Número de telefone. Preencha apenas com númreos."),
+        verbose_name=_("Telefone Celular"),
+        max_length=15, null=False, blank=False)
+
+    phone_number = models.CharField(
+        help_text=_("Número de telefone. Preencha apenas com númreos."),
+        verbose_name=_("Teledone Fixo"),
+        max_length=15, null=True, blank=False)
 
     class Meta:
         verbose_name = _('Cliente')
@@ -95,7 +88,6 @@ class ShippingAddress(models.Model):
             " Ex: 'Ao lado da Farmécia'"),
         verbose_name=_("Ponto de Referência."),
         max_length=256, null=True, blank=True)
-    contact = models.ForeignKey(PhoneNumber)
 
     class Meta:
         verbose_name = _('Endereço para Envio')
