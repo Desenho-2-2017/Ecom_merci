@@ -7,7 +7,8 @@ from .models import (
 from .serializers import (
     CartSerializerDefault,
     CartSerializerPOST,
-    ItemSerializerDefault
+    ItemSerializerDefault,
+    ItemSerializerPOST
     )
 
 
@@ -33,7 +34,7 @@ class CartViewSet(ModelViewSet):
         Return a list of:
         ```
         {
-            "id": "integer",
+            "pk": "integer",
             "creation_date": "date",
             "checked_out": "boolean"
         }
@@ -139,3 +140,128 @@ class ItemViewSet(ModelViewSet):
     queryset = Item.objects.all()
     serializer_class = ItemSerializerDefault
     permission_classes = (IsAuthenticated,)
+
+    def get_serializer_class(self):
+        if self.action == 'create':
+            return ItemSerializerPOST
+        return ItemSerializerDefault
+
+    def list(self, request):
+        """
+        API endpoint that allows all item to be viewed.
+        ---
+        Response example:
+        Return a list of:
+        ```
+        {
+            "id": "integer",
+            "quantity": "integer",
+            "object_id": "integer",
+            "unit_price": "integer",
+            "cart": "cart",
+            "content_type": "content_type"
+        }
+        ```
+        """
+        response = super(ItemViewSet, self).list(request)
+        return response
+
+    def create(self, request):
+        """
+        API endpoint that allows item to be created.
+        ---
+        Body example:
+        ```
+        {
+            "quantity": "integer",
+            "object_id": "integer",
+            "unit_price": "integer",
+            "cart": "cart",
+            "content_type": "content_type"
+        }
+        ```
+        Response example:
+        ```
+        {
+            "pk": 1,
+            "quantity": "integer",
+            "object_id": "integer",
+            "unit_price": "integer",
+            "cart": "cart",
+            "content_type": "content_type"
+        }
+        ```
+        """
+        response = super(ItemViewSet, self).create(request)
+        return response
+
+    def destroy(self, request, pk=None):
+        """
+        API endpoint that allows item to be deleted.
+        """
+        response = super(CartViewSet, self).destroy(request, pk)
+        return response
+
+    def retrieve(self, request, pk=None):
+        """
+        API endpoint that allows allow the return\
+        of a item through the method Get.
+        ---
+        Response example:
+        ```
+        {
+            "id": "integer",
+            "quantity": "integer",
+            "object_id": "integer",
+            "unit_price": "integer",
+            "cart": "cart",
+        }
+        ```
+        """
+        response = super(ItemViewSet, self).retrieve(request, pk)
+        return response
+
+    def partial_update(self, request, pk=None, **kwargs):
+        """
+        API endpoint that allows a cart to be edited.
+        ---
+        Parameters:
+        Item ID and a JSON with one or more attributes of item
+        Example:
+        ```
+        {
+            "quantity": "integer",
+            "object_id": "integer",
+            "unit_price": "integer",
+            "cart": "cart",
+        }
+        ```
+        """
+        response = super(ItemViewSet, self).\
+            partial_update(request, pk, **kwargs)
+        return response
+
+    def update(self, request, pk=None, **kwargs):
+        """
+        API endpoint that allows a cart to be edited.
+        ---
+        Parameters:
+        Item ID and a JSON with all attributes
+        Example:
+        ```
+        {
+            "quantity": "integer",
+            "object_id": "integer",
+            "unit_price": "integer",
+            "cart": "cart",
+        }
+        ```
+        """
+        response = super(
+            ItemViewSet,
+            self).update(
+            request,
+            pk,
+            **kwargs
+            )
+        return response

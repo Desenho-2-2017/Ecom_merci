@@ -24,5 +24,15 @@ class CartSerializerPOST(serializers.ModelSerializer):
 class ItemSerializerDefault(serializers.ModelSerializer):
     class Meta:
         model = Item
-        fields = ('id', 'quantity', 'object_id', 'unit_price', 'cart',
+        fields = '__all__'
+
+
+class ItemSerializerPOST(serializers.ModelSerializer):
+    class Meta:
+        model = Item
+        fields = ('pk', 'quantity', 'object_id', 'unit_price', 'cart',
                   'content_type')
+
+    def create(self, validated_data):
+        item = Item(**validated_data)
+        return item
