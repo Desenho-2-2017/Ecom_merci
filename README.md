@@ -5,72 +5,9 @@
 # Ecom_Merci
 
 ## Configuração Dev
+  As configurações de desenvolvimento estão descritas [(nesta seção da wiki)](https://github.com/Desenho-2-2017/Ecom_merci/wiki/Configuracao-de-Ambiente-Desenvolvimento).
 
-### Dependências
+## Dependências do projeto
+O projeto tem um conjunto de dependências que estão organizadas da seguinte maneira:
 * python3
-* [virtualenv](https://virtualenv.pypa.io/en/stable/)
-* [virtualenvwrapper](https://virtualenvwrapper.readthedocs.io/en/latest/)
-
-### Configurando o VirtualEnv
-Tenha as Dependências citadas acima instaladas na sua máquina.
-
-Siga as instruções de instalação do virtualenvwrapper [(neste link)](https://virtualenvwrapper.readthedocs.io/en/latest/).
-
-#### Configurando o seu ambiente
-Adicione as seguintes linhas no arquivo ~/.bashrc
-```
-export WORKON_HOME=$HOME/.virtualenvs
-mkdir -p $WORKON_HOME
-source /usr/local/bin/virtualenvwrapper.sh
-
-export PROJECT_HOME=$HOME/workspace
-mkdir -p $PROJECT_HOME
-```
-
-#### Clonando o Repositório
-Clone o repositório na pasta ```$PROJECT_HOME```
-
-```
-cd $PROJECT_HOME
-git clone git@github.com:Desenho-2-2017/Ecom_merci.git
-```
-
-#### Criando um VirtualEnv
-```
-mkvirtualenv -p python3 -a <project_path> -r requirements/requirements.txt <virtual_env_name>
-```
-
-Exemplo:
-```
-mkvirtualenv -p python3 -a Ecom_merci -r requirements/requirements.txt eco
-```
-
-### Configurando seu Projeto
-Crie um arquivo .env em Ecom_merci/ecom_merci/ com as seguintes configurações:
-
-```
-SECRET_KEY=blablakey
-DEBUG = True
-```
-
-#### Gerando sua SECRET_KEY
-
-```
-python manage.py generate_secret_key
-```
-Copie o output do comando para a linha SECRET_KEY do seu arquivo .env
-
-#### Suba o sistema
-```
-python manage.py runserver
-```
-
-### Verificação de Commits
-O projeto possui integração continua com o [travis](https://travis-ci.org/Desenho-2-2017/Ecom_merci) e executa ao menos 2 verificações:
-- pytest
-- flake8
-
-para evitar falhas no build, você pode executa-los manualmente ou "instalar" o pre-commit hook através do script:
-```
-./scripts/git_hooks/install_pre_commit.sh
-```
+* Todos pacotes listados no arquivo de configuração [(requirements.txt)](requirements/requirements.txt)
