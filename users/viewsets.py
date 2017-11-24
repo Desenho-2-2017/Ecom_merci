@@ -6,8 +6,10 @@ from .models import (
     )
 from .serializers import (
     # CustomerUserSerializer,
-    CreditCardSerializer,
-    ShippingAddressSerializer,
+    # CreditCardSerializer,
+    CreditCardSerializerPOST,
+    CreditCardSerializerDefault,
+    ShippingAddressSerializerDefault,
     CustomerUserSerializerDefault,
     CustomerUserSerializerPOST,
     )
@@ -51,7 +53,8 @@ class CustomerUserViewSet(ModelViewSet):
             "date_joined": "date_time",
             "groups": [],
             "user_permissions": [],
-            "phone_numbers": []
+            "cellphone": "integer",
+            "phone_number": "integer"
         }
         ```
         """
@@ -114,7 +117,8 @@ class CustomerUserViewSet(ModelViewSet):
             "date_joined": "date_time",
             "groups": [],
             "user_permissions": [],
-            "phone_numbers": []
+            "cellphone": "integer",
+            "phone_number": "integer"
         }
         ```
         """
@@ -134,7 +138,8 @@ class CustomerUserViewSet(ModelViewSet):
             "last_login": "date_time",
             "is_staff": "boolean",
             "user_permissions": [],
-            "phone_numbers": []
+            "cellphone": "integer",
+            "phone_number": "integer"
         }
         ```
         """
@@ -154,7 +159,8 @@ class CustomerUserViewSet(ModelViewSet):
         {
             "username": "string",
             "password": "string",
-            "phone_numbers": []
+            "cellphone": "integer",
+            "phone_number": "integer"
         }
         ```
         """
@@ -174,8 +180,51 @@ class CreditCardViewSet(ModelViewSet):
     viewed, created, deleted or edited.
     """
     queryset = CreditCard.objects.all()
-    serializer_class = CreditCardSerializer
+    serializer_class = CreditCardSerializerDefault
     permission_classes = (DefaultUserItemsPermissions,)
+
+    def get_serializer_class(self):
+        if self.action == 'create':
+            return CreditCardSerializerPOST
+        return CreditCardSerializerDefault
+
+    def list(self, request):
+        """
+        API endpoint that allows credit cards to be viewed
+        ---
+        Response example:
+        Return a list of:
+        ```
+        {
+            "id": "integer",
+            "owner_name": "string",
+            "card_number": "string",
+            "security_code": "string",
+            "expire_date": "date_time",
+            "provider": "string",
+        }
+        ```
+        """
+        response = super(CreditCardViewSet, self).list(request)
+        return response
+
+    # def create(self, request):
+    #     """
+    #     API endpoint that allows credit cards to be created.
+    #     ---
+    #     Body example:
+    #     ```
+    #     {
+    #         "owner_name": "string",
+    #         "card_number": "string",
+    #         "security_code": "string",
+    #         "expire_date": "date_time",
+    #         "provider": "string",
+    #     }
+    #     ```
+    #     """
+    #     response = super(CreditCardViewSet, self).create(request)
+    #     return response
 
 
 class ShippingAddressViewSet(ModelViewSet):
@@ -184,5 +233,5 @@ class ShippingAddressViewSet(ModelViewSet):
     viewed, created, deleted or edited.
     """
     queryset = ShippingAddress.objects.all()
-    serializer_class = ShippingAddressSerializer
+    serializer_class = ShippingAddressSerializerDefault
     permission_classes = (DefaultUserItemsPermissions,)

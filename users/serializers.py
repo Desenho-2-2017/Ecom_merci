@@ -37,13 +37,27 @@ class CustomerUserSerializerPOST(serializers.ModelSerializer):
         return user
 
 
-class CreditCardSerializer(serializers.ModelSerializer):
+class CreditCardSerializerDefault(serializers.ModelSerializer):
     class Meta:
         model = CreditCard
         fields = '__all__'
 
 
-class ShippingAddressSerializer(serializers.ModelSerializer):
+class CreditCardSerializerPOST(serializers.ModelSerializer):
+    class Meta:
+        model = CreditCard
+        fields = ('pk', 'owner_name', 'card_number', 'security_code',
+                  'expire_date', 'provider', 'user')
+
+    def create(self, validated_data):
+        credit_card = CreditCard(**validated_data)
+        credit_card.save()
+        token = Token.objects.create(credit_card=credit_card)
+        token.save()
+        return credit_card
+
+
+class ShippingAddressSerializerDefault(serializers.ModelSerializer):
     class Meta:
         model = ShippingAddress
         fields = '__all__'
