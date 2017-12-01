@@ -2,7 +2,8 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/66c7eec706fdc129d8dd/maintainability)](https://codeclimate.com/github/Desenho-2-2017/Ecom_merci/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/66c7eec706fdc129d8dd/test_coverage)](https://codeclimate.com/github/Desenho-2-2017/Ecom_merci/test_coverage)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-# Ecom_Merci
+
+![Logo Ecom_Merci](https://raw.githubusercontent.com/wiki/Desenho-2-2017/Ecom_merci/images/final_logo.png)
 
 ## Configuração Dev
   As configurações de desenvolvimento estão descritas [(nesta seção da wiki)](https://github.com/Desenho-2-2017/Ecom_merci/wiki/Configuracao-de-Ambiente-Desenvolvimento).
